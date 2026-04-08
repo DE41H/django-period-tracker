@@ -7,8 +7,17 @@ from django.core.validators import (
 from django.db import models
 from django.db.models import Q, F
 from django.db.models.constraints import CheckConstraint, UniqueConstraint
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+class User(AbstractUser):
+    date_of_birth = models.DateTimeField()
+    uses_hormonal_contraception = models.BooleanField(default=False)
+    is_trying_to_conceive = models.BooleanField(default=False)
+    kalman_estimate = models.FloatField(default=28.0)
+    kalman_error = models.FloatField(default=10.0)
+
 
 class FlowLevel(models.TextChoices):
     LIGHT = 'light', 'Light'

@@ -28,6 +28,8 @@ DEBUG = getenv('DJANGO_DEBUG') == "True"
 
 ALLOWED_HOSTS = [ elem for elem in getenv('DJANGO_ALLOWED_HOSTS', '').split() if elem]
 
+AUTH_USER_MODEL = 'cycle.User'
+
 
 # Application definition
 
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
