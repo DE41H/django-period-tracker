@@ -1,0 +1,3113 @@
+[
+  {
+    "model": "cycle.Symptom",
+    "pk": 1,
+    "fields": {
+      "name": "cramps",
+      "medical_term": "dysmenorrhea",
+      "phase": 1,
+      "severity": "high",
+      "probability": 0.85,
+      "description": "Uterine contractions driven by prostaglandins to expel the uterine lining. Primary dysmenorrhea has no underlying cause; secondary is linked to conditions like endometriosis.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Apply a heat pad to the lower abdomen",
+        "Ibuprofen is more effective than paracetamol as it blocks prostaglandins",
+        "Light walking increases blood flow and reduces cramping",
+        "Magnesium supplementation can reduce severity over time"
+      ],
+      "related": [
+        3,
+        13,
+        6,
+        7,
+        8,
+        4,
+        23,
+        22,
+        26
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 2,
+    "fields": {
+      "name": "heavy bleeding",
+      "medical_term": "menorrhagia",
+      "phase": 1,
+      "severity": "high",
+      "probability": 0.8,
+      "description": "Peak flow typically occurs on days 1\u20132 and tapers toward the end of the period. Losing more than 80ml per cycle is clinically defined as menorrhagia.",
+      "typical_start_day": 1,
+      "typical_end_day": 2,
+      "tips": [
+        "Track flow level daily using the app",
+        "Consult a doctor if soaking more than one pad or tampon per hour for several hours",
+        "Iron-rich foods help replenish iron lost through blood",
+        "Consider period underwear or a menstrual cup for overnight protection"
+      ],
+      "related": [
+        4,
+        15,
+        12,
+        21,
+        13,
+        1,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 3,
+    "fields": {
+      "name": "lower back pain",
+      "medical_term": "dysmenorrhea-related lumbago",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.75,
+      "description": "Referred pain from uterine contractions that radiate to the lower back and sacral region. The same prostaglandins that cause cramps trigger this pain.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Apply heat to the lower back",
+        "Child's pose and gentle yoga stretches help",
+        "A TENS machine can provide relief",
+        "Ibuprofen addresses the prostaglandin source"
+      ],
+      "related": [
+        1,
+        13,
+        64,
+        26,
+        24,
+        25
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 4,
+    "fields": {
+      "name": "fatigue",
+      "medical_term": "menstrual fatigue",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.8,
+      "description": "Blood loss reduces circulating iron and hemoglobin, lowering oxygen delivery to cells. Estrogen and progesterone are also at their lowest, reducing energy-regulating neurotransmitters.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Rest as needed \u2014 this is not laziness, it is physiology",
+        "Eat iron-rich foods such as spinach, lentils, and red meat",
+        "Vitamin C alongside iron sources enhances absorption",
+        "Stay hydrated as dehydration compounds fatigue"
+      ],
+      "related": [
+        11,
+        84,
+        67,
+        2,
+        12,
+        62,
+        26
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 5,
+    "fields": {
+      "name": "headache",
+      "medical_term": "menstrual migraine",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "Triggered by the sharp drop in estrogen that occurs just before and during menstruation. Estrogen withdrawal lowers serotonin and affects blood vessel dilation in the brain.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Stay well hydrated \u2014 dehydration worsens hormonal headaches",
+        "Avoid caffeine withdrawal during this phase which can trigger rebound headaches",
+        "Magnesium glycinate supplementation is evidence-based for menstrual migraines",
+        "A cold compress on the forehead and dark room rest help"
+      ],
+      "related": [
+        19,
+        20,
+        7,
+        29,
+        43,
+        21
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 6,
+    "fields": {
+      "name": "bloating",
+      "medical_term": "menstrual bloating",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.7,
+      "description": "Prostaglandins cause water retention and slow GI motility. The uterus is also slightly enlarged during menstruation adding to the sensation of abdominal fullness.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Reduce sodium and processed food intake",
+        "Avoid carbonated drinks",
+        "Herbal teas such as peppermint and fennel aid digestion",
+        "Light exercise reduces water retention and stimulates bowel movement"
+      ],
+      "related": [
+        58,
+        61,
+        22,
+        1,
+        64,
+        41,
+        74
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 7,
+    "fields": {
+      "name": "nausea",
+      "medical_term": "menstrual nausea",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "High prostaglandin levels can affect the gastrointestinal tract causing nausea, especially on heavy flow days when prostaglandins are highest.",
+      "typical_start_day": 1,
+      "typical_end_day": 2,
+      "tips": [
+        "Eat small frequent meals rather than large ones",
+        "Ginger tea or crystallised ginger is evidence-based for nausea",
+        "Avoid greasy, spicy or heavily processed foods",
+        "Rest in a well-ventilated area if nausea is severe"
+      ],
+      "related": [
+        5,
+        21,
+        52,
+        106,
+        8,
+        1
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 8,
+    "fields": {
+      "name": "diarrhea",
+      "medical_term": "prostaglandin-induced diarrhea",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.45,
+      "description": "Prostaglandins act on smooth muscle throughout the body including the intestines. Excess prostaglandins spill into the bloodstream causing gut contractions and loose stools.",
+      "typical_start_day": 1,
+      "typical_end_day": 2,
+      "tips": [
+        "Avoid high-fibre foods on heavy flow days",
+        "Stay hydrated to replace lost fluids and electrolytes",
+        "The BRAT diet (banana, rice, applesauce, toast) is gentle on the gut",
+        "Ibuprofen reduces prostaglandins and may help GI symptoms too"
+      ],
+      "related": [
+        1,
+        22,
+        7,
+        6
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 9,
+    "fields": {
+      "name": "breast tenderness",
+      "medical_term": "cyclic mastalgia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.5,
+      "description": "Residual tenderness from the luteal phase progesterone surge that typically improves once bleeding begins and hormone levels drop.",
+      "typical_start_day": 1,
+      "typical_end_day": 2,
+      "tips": [
+        "Wear a well-fitting supportive bra including at night if severe",
+        "Reduce caffeine intake which is linked to cyclic breast pain",
+        "Evening primrose oil has some evidence for reducing cyclic mastalgia",
+        "A warm compress provides relief"
+      ],
+      "related": [
+        38,
+        107,
+        69,
+        58
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 10,
+    "fields": {
+      "name": "mood swings",
+      "medical_term": "menstrual mood dysregulation",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.65,
+      "description": "The collapse of estrogen and progesterone at the start of menstruation disrupts serotonin, dopamine and GABA signalling causing rapid shifts between irritability, sadness and brief moments of relief.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Gentle aerobic exercise is the most effective natural serotonin booster",
+        "Prioritise sleep \u2014 sleep deprivation magnifies hormonal mood effects",
+        "Omega-3 fatty acids support neurotransmitter function",
+        "Avoid scheduling high-stakes social or professional events on day 1\u20132"
+      ],
+      "related": [
+        68,
+        59,
+        11,
+        79,
+        65,
+        80
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 11,
+    "fields": {
+      "name": "low mood",
+      "medical_term": "menstrual depression",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "The simultaneous crash of estrogen and progesterone at menstruation onset affects serotonin receptor sensitivity and dopamine availability causing a low, flat or sad mood.",
+      "typical_start_day": 1,
+      "typical_end_day": 4,
+      "tips": [
+        "Social support and connection genuinely help even when withdrawal feels tempting",
+        "Sunlight exposure raises serotonin \u2014 even a short walk outdoors helps",
+        "Avoid alcohol which is a CNS depressant and worsens hormonal low mood",
+        "This typically lifts naturally as estrogen begins rising in the follicular phase"
+      ],
+      "related": [
+        10,
+        79,
+        77,
+        78,
+        59,
+        4,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 12,
+    "fields": {
+      "name": "pale skin",
+      "medical_term": "menstrual-related transient anemia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Significant blood loss causes a temporary drop in hemoglobin and red blood cell count causing pallor, particularly noticeable around the lips and fingernails.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Eat iron-rich foods: red meat, spinach, lentils, tofu, fortified cereals",
+        "Pair iron sources with vitamin C to enhance absorption",
+        "Consider a short-term iron supplement if periods are consistently heavy",
+        "Consult a doctor if pallor is severe or accompanied by breathlessness"
+      ],
+      "related": [
+        2,
+        4,
+        21,
+        98,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 13,
+    "fields": {
+      "name": "pelvic pressure",
+      "medical_term": "menstrual pelvic congestion",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "Uterine contractions and increased pelvic blood flow during menstruation create a sensation of heaviness, fullness or pressure in the lower abdomen and pelvis.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Rest with legs slightly elevated",
+        "Warm baths relax pelvic muscles and relieve pressure",
+        "A heat pad on the lower abdomen is effective",
+        "Child's pose yoga stretch decompresses the pelvis"
+      ],
+      "related": [
+        1,
+        64,
+        23,
+        3,
+        6,
+        22
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 14,
+    "fields": {
+      "name": "appetite changes",
+      "medical_term": "menstrual appetite fluctuation",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.55,
+      "description": "Nausea, cramps and low mood during menstruation suppress appetite in some people while the hormonal reset triggers increased hunger in others.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Eat nourishing whole foods regardless of whether appetite is high or low",
+        "Do not skip meals \u2014 blood sugar instability worsens mood and fatigue",
+        "Iron and B-vitamin rich foods are particularly helpful in this phase",
+        "Listen to your body's signals rather than forcing a routine"
+      ],
+      "related": [
+        56,
+        89,
+        7,
+        11
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 15,
+    "fields": {
+      "name": "clotting",
+      "medical_term": "menstrual clots",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.5,
+      "description": "Clots form when blood pools in the uterus faster than anticoagulants can break it down. Small clots are normal during heavy flow. Large clots may indicate fibroids or other conditions.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Clots smaller than a 50p coin are generally normal",
+        "Consistently large clots with very heavy flow warrant a GP visit",
+        "Staying hydrated keeps blood slightly less viscous",
+        "Tracking clot size over multiple cycles is useful information for your doctor"
+      ],
+      "related": [
+        2,
+        1,
+        13
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 16,
+    "fields": {
+      "name": "iron deficiency symptoms",
+      "medical_term": "menstrual iron depletion",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.35,
+      "description": "Repeated blood loss through menstruation is the most common cause of iron deficiency in people with periods. Symptoms include fatigue, brain fog, cold hands and brittle nails.",
+      "typical_start_day": 1,
+      "typical_end_day": 7,
+      "tips": [
+        "Eat iron-rich foods throughout the cycle not just during the period",
+        "Avoid tea and coffee with meals as tannins inhibit iron absorption",
+        "A full blood count from your GP can confirm iron status",
+        "Iron bisglycinate supplements cause fewer GI side effects than ferrous sulphate"
+      ],
+      "related": [
+        4,
+        12,
+        84,
+        98,
+        97,
+        96,
+        21
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 17,
+    "fields": {
+      "name": "chills",
+      "medical_term": "menstrual thermoregulation disruption",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Prostaglandins and blood loss can disrupt thermoregulation causing episodes of feeling cold or shivery, particularly on the heaviest flow days.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Layer clothing for easy temperature adjustment",
+        "Warm drinks and soups help maintain core temperature",
+        "A hot water bottle provides comfort",
+        "If accompanied by fever above 38\u00b0C consult a doctor as this may indicate infection"
+      ],
+      "related": [
+        18,
+        12,
+        98,
+        2
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 18,
+    "fields": {
+      "name": "fever",
+      "medical_term": "pyrexia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.1,
+      "description": "A mild low-grade temperature can occasionally accompany heavy periods. A significant fever during menstruation may indicate pelvic inflammatory disease or infection and requires medical attention.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Monitor temperature with a thermometer",
+        "Fever above 38\u00b0C during menstruation warrants same-day medical attention",
+        "Stay hydrated",
+        "Do not ignore fever with pelvic pain \u2014 this combination can indicate a serious infection"
+      ],
+      "related": [
+        17,
+        26,
+        4,
+        7,
+        23
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 19,
+    "fields": {
+      "name": "sensitivity to light",
+      "medical_term": "photophobia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Menstrual migraines and tension headaches are commonly accompanied by photophobia \u2014 a heightened sensitivity to light that makes bright environments painful.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Rest in a darkened room",
+        "Wear sunglasses outdoors or in bright indoor environments",
+        "Reduce screen brightness and use night mode",
+        "Address the underlying headache with hydration and pain relief"
+      ],
+      "related": [
+        5,
+        20,
+        29,
+        43,
+        7
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 20,
+    "fields": {
+      "name": "sensitivity to sound",
+      "medical_term": "phonophobia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Like photophobia, sound sensitivity accompanies menstrual migraines and headaches due to heightened neurological sensitivity driven by estrogen withdrawal.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Use earplugs or noise-cancelling headphones",
+        "Rest in a quiet environment",
+        "Avoid loud social environments on migraine days",
+        "Address the underlying headache first"
+      ],
+      "related": [
+        19,
+        5,
+        43,
+        7
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 21,
+    "fields": {
+      "name": "dizziness",
+      "medical_term": "menstrual vertigo",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Blood loss and the associated drop in blood pressure during menstruation can cause lightheadedness or dizziness, particularly when standing up quickly.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Stand up slowly from sitting or lying positions",
+        "Stay well hydrated as dehydration compounds low blood pressure",
+        "Eat regular meals to maintain blood sugar",
+        "If dizziness is severe or accompanied by fainting seek medical advice"
+      ],
+      "related": [
+        7,
+        12,
+        2,
+        72,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 22,
+    "fields": {
+      "name": "abdominal pain",
+      "medical_term": "menstrual abdominal pain",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "Diffuse abdominal pain associated with uterine contractions, GI changes driven by prostaglandins, and generalised pelvic congestion during menstruation.",
+      "typical_start_day": 1,
+      "typical_end_day": 4,
+      "tips": [
+        "Heat therapy on the abdomen is highly effective",
+        "Ibuprofen targets the prostaglandin cause",
+        "Avoid foods that cause gas or bloating",
+        "Gentle massage of the lower abdomen in circular motions can help"
+      ],
+      "related": [
+        1,
+        6,
+        23,
+        7,
+        61,
+        8,
+        13
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 23,
+    "fields": {
+      "name": "pelvic pain",
+      "medical_term": "pelvic pain",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "Pain in the pelvic cavity from uterine contractions, increased blood flow and pelvic congestion. Persistent or worsening pelvic pain across cycles may indicate endometriosis or fibroids.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Heat therapy is first-line relief",
+        "NSAIDs like ibuprofen are more effective than paracetamol",
+        "Consult a doctor if pelvic pain is worsening cycle on cycle",
+        "Track severity and character of pain to help a doctor assess"
+      ],
+      "related": [
+        1,
+        13,
+        22,
+        64,
+        3,
+        18
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 24,
+    "fields": {
+      "name": "back pain",
+      "medical_term": "lumbar pain",
+      "phase": 1,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "General lower back pain associated with menstrual cramps, uterine referred pain and ligament laxity from hormonal changes.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Heat therapy applied to lower back",
+        "Gentle stretching and yoga",
+        "Anti-inflammatory pain relief",
+        "Avoid sitting in one position for long periods"
+      ],
+      "related": [
+        3,
+        63,
+        26,
+        25,
+        64,
+        1
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 25,
+    "fields": {
+      "name": "joint pain",
+      "medical_term": "menstrual arthralgia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Systemic prostaglandin release and low-grade inflammation during menstruation can cause generalised joint aching similar to the joint pain of a mild flu.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Gentle movement is better than complete rest for joint pain",
+        "An anti-inflammatory diet rich in omega-3 fatty acids helps",
+        "Warm baths ease joint stiffness",
+        "Ibuprofen addresses both prostaglandins and joint inflammation"
+      ],
+      "related": [
+        26,
+        24,
+        4,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 26,
+    "fields": {
+      "name": "muscle aches",
+      "medical_term": "menstrual myalgia",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Prostaglandins cause systemic inflammation that manifests as generalised muscle soreness, often similar in feel to the body aches of illness.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Light stretching maintains circulation and reduces stiffness",
+        "Warm baths with Epsom salts are soothing",
+        "Magnesium supplementation reduces muscle cramping and soreness",
+        "Gentle yoga is more restorative than complete rest"
+      ],
+      "related": [
+        25,
+        24,
+        4,
+        3,
+        1
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 27,
+    "fields": {
+      "name": "nasal congestion",
+      "medical_term": "menstrual rhinitis",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Estrogen affects mucous membrane tissue throughout the body including the nasal passages. Its drop during menstruation can paradoxically increase congestion in some people.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Saline nasal spray is safe and effective",
+        "Stay hydrated",
+        "A humidifier in the bedroom helps",
+        "Nasal strips can improve airflow at night"
+      ],
+      "related": [
+        28,
+        5,
+        105,
+        19
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 28,
+    "fields": {
+      "name": "sore throat",
+      "medical_term": "menstrual immune vulnerability",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Immune function fluctuates with the menstrual cycle. Some research suggests reduced immune defence during menstruation making minor infections more likely.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Warm drinks with honey and lemon soothe the throat",
+        "Gargling with warm salt water reduces inflammation",
+        "Consult a doctor if severe or persistent",
+        "Prioritise rest to support immune function"
+      ],
+      "related": [
+        27,
+        18,
+        17,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 29,
+    "fields": {
+      "name": "eye strain",
+      "medical_term": "menstrual ocular fatigue",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Fatigue and hormonal headaches during menstruation increase sensitivity in and around the eyes, making screen use and reading more fatiguing.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Take regular breaks from screens using the 20-20-20 rule",
+        "A warm compress on closed eyes relieves strain",
+        "Reduce screen brightness",
+        "Rest the eyes in a dark room if headache accompanies the strain"
+      ],
+      "related": [
+        5,
+        19,
+        30,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 30,
+    "fields": {
+      "name": "vision changes",
+      "medical_term": "menstrual visual disturbance",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Menstrual migraines can cause visual auras including zigzag lines, blind spots or temporary blurring. Fluid retention can also subtly affect corneal curvature.",
+      "typical_start_day": 1,
+      "typical_end_day": 3,
+      "tips": [
+        "Rest in a dark quiet room if a visual aura precedes a migraine",
+        "Contact lens wearers may find glasses more comfortable during this phase",
+        "Consult a doctor if vision changes are new, severe or persistent"
+      ],
+      "related": [
+        29,
+        21,
+        19,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 31,
+    "fields": {
+      "name": "ear ringing",
+      "medical_term": "menstrual tinnitus",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.1,
+      "description": "Fluid retention and changes in blood pressure during menstruation can cause brief episodes of tinnitus in people who are susceptible.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Consult a doctor if tinnitus is persistent or worsening",
+        "Avoid loud environments",
+        "Reducing salt intake can reduce fluid retention that contributes to tinnitus"
+      ],
+      "related": [
+        20,
+        21,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 32,
+    "fields": {
+      "name": "rising energy",
+      "medical_term": "estrogen-mediated vitality",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.8,
+      "description": "Rising estrogen boosts serotonin and dopamine availability and increases mitochondrial efficiency. Physical and cognitive energy progressively improves from around day 6 onwards.",
+      "typical_start_day": 6,
+      "typical_end_day": 13,
+      "tips": [
+        "This is an ideal phase for starting new projects or habits",
+        "High-intensity exercise yields better results and feels easier now",
+        "Capitalise on natural motivation for tasks you've been avoiding",
+        "Social energy is high \u2014 schedule important meetings and events"
+      ],
+      "related": [
+        33,
+        39,
+        40,
+        51,
+        44
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 33,
+    "fields": {
+      "name": "improved mood",
+      "medical_term": "estrogenic mood elevation",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.75,
+      "description": "Rising estrogen increases the sensitivity of serotonin receptors and promotes dopamine release, creating a progressive improvement in mood, optimism and emotional resilience.",
+      "typical_start_day": 7,
+      "typical_end_day": 13,
+      "tips": [
+        "Schedule demanding social situations and difficult conversations in this phase",
+        "Your emotional resilience is highest now \u2014 use it strategically",
+        "Reflect on what went well in the previous cycle"
+      ],
+      "related": [
+        32,
+        40,
+        39,
+        34,
+        35
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 34,
+    "fields": {
+      "name": "clear skin",
+      "medical_term": "estrogenic skin improvement",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.65,
+      "description": "Estrogen promotes collagen synthesis and reduces sebum production. Skin is often at its clearest and most luminous in the follicular phase.",
+      "typical_start_day": 8,
+      "typical_end_day": 13,
+      "tips": [
+        "A good phase to introduce new skincare treatments as skin is less reactive",
+        "Estrogen improves wound healing so skin recovers faster from extractions",
+        "Stay hydrated for maximum skin benefit"
+      ],
+      "related": [
+        33,
+        32,
+        57
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 35,
+    "fields": {
+      "name": "increased libido",
+      "medical_term": "pre-ovulatory libido increase",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.6,
+      "description": "Rising estrogen and testosterone in the lead-up to ovulation increase sexual desire. This is biologically driven by the body preparing for peak fertility.",
+      "typical_start_day": 10,
+      "typical_end_day": 13,
+      "tips": [
+        "This is the body's natural preparation for the fertile window",
+        "Communication with a partner about cycle-related changes in libido supports relationship wellbeing"
+      ],
+      "related": [
+        48,
+        40,
+        36,
+        46
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 36,
+    "fields": {
+      "name": "cervical mucus changes",
+      "medical_term": "fertile cervical mucus",
+      "phase": 2,
+      "severity": "neutral",
+      "probability": 0.7,
+      "description": "As ovulation approaches, cervical mucus transitions from dry or sticky (early follicular) through creamy and white to clear and stretchy. Tracking this is one of the most reliable fertility awareness methods.",
+      "typical_start_day": 9,
+      "typical_end_day": 13,
+      "tips": [
+        "Egg-white consistency cervical mucus signals approaching ovulation \u2014 peak fertility is 1\u20132 days away",
+        "Check mucus consistency by observing toilet paper or using clean fingers",
+        "Useful for both those trying to conceive and those avoiding pregnancy"
+      ],
+      "related": [
+        46,
+        53,
+        35,
+        47
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 37,
+    "fields": {
+      "name": "light spotting",
+      "medical_term": "post-menstrual spotting",
+      "phase": 2,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Light brown or pink discharge in the first couple of days after menstruation ends. This is old blood clearing from the uterus and is normal.",
+      "typical_start_day": 6,
+      "typical_end_day": 7,
+      "tips": [
+        "Brown discharge is oxidised old blood and is completely normal",
+        "Should resolve within 1\u20132 days",
+        "If fresh red spotting persists beyond day 7 consult a doctor"
+      ],
+      "related": [
+        103,
+        47,
+        111,
+        36
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 38,
+    "fields": {
+      "name": "mild breast sensitivity",
+      "medical_term": "estrogenic breast changes",
+      "phase": 2,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Rising estrogen causes mild breast tissue proliferation and fluid retention in the breast, leading to a slight increase in sensitivity or fullness in the late follicular phase.",
+      "typical_start_day": 11,
+      "typical_end_day": 13,
+      "tips": [
+        "A well-fitting sports bra reduces discomfort during exercise",
+        "This is much milder than luteal phase breast tenderness and should not be alarming"
+      ],
+      "related": [
+        9,
+        107,
+        69
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 39,
+    "fields": {
+      "name": "improved concentration",
+      "medical_term": "estrogenic cognitive enhancement",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.65,
+      "description": "Estrogen enhances verbal memory, processing speed, cognitive flexibility and executive function. This is one of the most cognitively sharp phases of the cycle.",
+      "typical_start_day": 8,
+      "typical_end_day": 13,
+      "tips": [
+        "Schedule cognitively demanding work, presentations and creative projects now",
+        "Memory and learning are enhanced \u2014 ideal for studying or acquiring new skills",
+        "You may find it easier to have clarity on decisions that felt harder in the luteal phase"
+      ],
+      "related": [
+        32,
+        33,
+        62,
+        84,
+        85
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 40,
+    "fields": {
+      "name": "increased sociability",
+      "medical_term": "estrogen-mediated social drive",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.6,
+      "description": "Higher estrogen and dopamine increase confidence, verbal fluency and the drive to connect socially. People often feel more extroverted and articulate in this phase.",
+      "typical_start_day": 8,
+      "typical_end_day": 13,
+      "tips": [
+        "Great time for networking events, job interviews, first dates, and social commitments",
+        "Your ability to read social cues and communicate clearly is enhanced",
+        "Use this energy to address relationship conversations you've been putting off"
+      ],
+      "related": [
+        33,
+        32,
+        51,
+        35
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 41,
+    "fields": {
+      "name": "mild bloating resolution",
+      "medical_term": "post-menstrual bloating resolution",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.7,
+      "description": "As prostaglandins drop and estrogen rises, the water retention and GI sluggishness of menstruation resolves. Many people notice their abdomen feels flatter.",
+      "typical_start_day": 6,
+      "typical_end_day": 8,
+      "tips": [
+        "This is a natural resolution \u2014 no specific action needed",
+        "Staying hydrated and reducing salt accelerates the process"
+      ],
+      "related": [
+        6,
+        58,
+        42
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 42,
+    "fields": {
+      "name": "appetite normalisation",
+      "medical_term": "follicular appetite regulation",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.6,
+      "description": "Estrogen has a mild appetite-suppressing effect and stabilises blood sugar regulation, making hunger cues feel more consistent and easier to manage.",
+      "typical_start_day": 7,
+      "typical_end_day": 13,
+      "tips": [
+        "A good phase to establish healthy eating habits as cravings are lower",
+        "Regular meals are easier to maintain in this phase",
+        "Use this phase to meal prep for the luteal phase when cravings are stronger"
+      ],
+      "related": [
+        14,
+        56,
+        41
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 43,
+    "fields": {
+      "name": "light headaches",
+      "medical_term": "estrogen rise headache",
+      "phase": 2,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Some people experience brief mild headaches in the early follicular phase as estrogen begins rising rapidly from its lowest point. These are distinct from menstrual migraines.",
+      "typical_start_day": 6,
+      "typical_end_day": 8,
+      "tips": [
+        "Stay hydrated",
+        "These typically resolve within 1\u20132 days as estrogen stabilises",
+        "Paracetamol or ibuprofen if needed"
+      ],
+      "related": [
+        5,
+        19,
+        29
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 44,
+    "fields": {
+      "name": "hyperactivity",
+      "medical_term": "estrogen-dopamine hyperactivity",
+      "phase": 2,
+      "severity": "positive",
+      "probability": 0.35,
+      "description": "The peak of estrogen and dopamine in the late follicular phase can in some people tip into restless hyperactive energy \u2014 a feeling of being 'wired' or unable to slow down.",
+      "typical_start_day": 10,
+      "typical_end_day": 13,
+      "tips": [
+        "Channel energy into exercise or creative work",
+        "Avoid caffeine if feeling overly wired",
+        "Mindfulness or journaling can ground scattered energy"
+      ],
+      "related": [
+        81,
+        32,
+        51,
+        59,
+        40
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 45,
+    "fields": {
+      "name": "mittelschmerz",
+      "medical_term": "mittelschmerz",
+      "phase": 3,
+      "severity": "medium",
+      "probability": 0.4,
+      "description": "One-sided lower abdominal pain occurring when the dominant follicle ruptures and releases the egg. Can range from a brief twinge to several hours of cramping. Typically alternates sides each cycle.",
+      "typical_start_day": 12,
+      "typical_end_day": 16,
+      "tips": [
+        "A heating pad on the affected side helps",
+        "Ibuprofen is effective if pain is significant",
+        "Pain alternating sides each cycle is reassuring that this is ovulatory",
+        "Seek medical attention if pain is severe, one-sided and accompanied by fever \u2014 this could indicate a ruptured cyst"
+      ],
+      "related": [
+        23,
+        13,
+        1,
+        22,
+        47
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 46,
+    "fields": {
+      "name": "egg white cervical mucus",
+      "medical_term": "spinnbarkeit",
+      "phase": 3,
+      "severity": "neutral",
+      "probability": 0.75,
+      "description": "At peak fertility, cervical mucus becomes clear, slippery and highly elastic \u2014 resembling raw egg white. This is the most reliable natural sign that ovulation is imminent or occurring.",
+      "typical_start_day": 11,
+      "typical_end_day": 14,
+      "tips": [
+        "This is the peak fertility window \u2014 sperm can survive up to 5 days in this mucus",
+        "The mucus should stretch 3\u20135cm between fingers without breaking",
+        "Tracking this alongside BBT gives the most complete fertility picture"
+      ],
+      "related": [
+        36,
+        53,
+        35,
+        47
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 47,
+    "fields": {
+      "name": "ovulation spotting",
+      "medical_term": "mid-cycle spotting",
+      "phase": 3,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Brief light pink or brown spotting caused by the rupture of the follicle wall. The small amount of blood from the follicle can appear as light spotting lasting 1\u20132 days.",
+      "typical_start_day": 13,
+      "typical_end_day": 15,
+      "tips": [
+        "Lasts only 1\u20132 days maximum",
+        "Normal and no cause for concern",
+        "Brown spotting indicates old blood from the follicle rupture",
+        "If heavy or prolonged consult a doctor"
+      ],
+      "related": [
+        37,
+        103,
+        36,
+        45
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 48,
+    "fields": {
+      "name": "peak libido",
+      "medical_term": "ovulatory libido peak",
+      "phase": 3,
+      "severity": "positive",
+      "probability": 0.7,
+      "description": "Testosterone and estrogen both peak around ovulation, creating the highest point of sexual desire in the cycle. This is a biologically driven mechanism to encourage reproduction.",
+      "typical_start_day": 12,
+      "typical_end_day": 16,
+      "tips": [
+        "This is a natural biological phenomenon",
+        "Communicating with a partner about cycle-related libido changes supports mutual understanding"
+      ],
+      "related": [
+        35,
+        49,
+        51,
+        40,
+        46
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 49,
+    "fields": {
+      "name": "heightened senses",
+      "medical_term": "ovulatory sensory enhancement",
+      "phase": 3,
+      "severity": "positive",
+      "probability": 0.45,
+      "description": "Research suggests that smell, vision and taste are subtly but measurably enhanced around ovulation. Estrogen and LH affect olfactory sensitivity in particular.",
+      "typical_start_day": 12,
+      "typical_end_day": 16,
+      "tips": [
+        "Many people notice they are more sensitive to perfumes and body odours around this time",
+        "Food may taste more intense",
+        "This is a fascinating aspect of cycle biology worth paying attention to"
+      ],
+      "related": [
+        48,
+        105,
+        19,
+        20,
+        113
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 50,
+    "fields": {
+      "name": "elevated basal body temperature",
+      "medical_term": "progesterone-induced BBT rise",
+      "phase": 3,
+      "severity": "neutral",
+      "probability": 0.9,
+      "description": "After ovulation, the corpus luteum releases progesterone which has a thermogenic effect, raising basal body temperature by 0.2\u20130.5\u00b0C. This sustained rise confirms that ovulation has occurred.",
+      "typical_start_day": 14,
+      "typical_end_day": 28,
+      "tips": [
+        "Measure BBT immediately upon waking before getting out of bed, speaking, or drinking",
+        "Use a basal thermometer which measures to two decimal places",
+        "A sustained rise of at least 0.2\u00b0C maintained for 3 or more days confirms ovulation",
+        "BBT charting combined with cervical mucus observation is highly effective for fertility awareness"
+      ],
+      "related": [
+        45,
+        17,
+        71,
+        47,
+        70
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 51,
+    "fields": {
+      "name": "peak energy and confidence",
+      "medical_term": "ovulatory peak wellbeing",
+      "phase": 3,
+      "severity": "positive",
+      "probability": 0.65,
+      "description": "The convergence of peak estrogen, testosterone and LH around ovulation creates the highest point of physical energy, social confidence and emotional wellbeing in the cycle.",
+      "typical_start_day": 12,
+      "typical_end_day": 16,
+      "tips": [
+        "Schedule important presentations, interviews, dates and social events around this window",
+        "Physical performance peaks \u2014 ideal for personal bests in sport or exercise",
+        "Creative confidence is also highest now"
+      ],
+      "related": [
+        32,
+        33,
+        48,
+        40,
+        35
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 52,
+    "fields": {
+      "name": "mild nausea",
+      "medical_term": "ovulatory nausea",
+      "phase": 3,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "The LH surge and rapid hormonal shifts around ovulation can cause brief, mild nausea in some people. This is distinct from the heavier nausea of menstruation or early pregnancy.",
+      "typical_start_day": 13,
+      "typical_end_day": 15,
+      "tips": [
+        "Brief and self-resolving within hours",
+        "Eat a small light snack if nausea is bothersome",
+        "Ginger tea or ginger chews help"
+      ],
+      "related": [
+        7,
+        21,
+        109
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 53,
+    "fields": {
+      "name": "increased vaginal discharge",
+      "medical_term": "ovulatory leukorrhea",
+      "phase": 3,
+      "severity": "neutral",
+      "probability": 0.8,
+      "description": "Peak estrogen stimulates maximum cervical mucus production just before ovulation. This significant increase in clear, watery or egg-white discharge is a reliable ovulation sign.",
+      "typical_start_day": 11,
+      "typical_end_day": 14,
+      "tips": [
+        "A noticeable increase in clear odourless discharge is a reliable sign of approaching ovulation",
+        "Should not be confused with infection \u2014 ovulatory discharge is clear and odourless",
+        "Panty liners can be used for comfort"
+      ],
+      "related": [
+        36,
+        46,
+        47
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 54,
+    "fields": {
+      "name": "breast tenderness ovulation",
+      "medical_term": "ovulatory mastalgia",
+      "phase": 3,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "The rapid hormonal shifts of the LH surge can cause brief breast sensitivity lasting 1\u20132 days around ovulation, distinct from the more prolonged luteal phase tenderness.",
+      "typical_start_day": 13,
+      "typical_end_day": 16,
+      "tips": [
+        "Brief and self-resolving",
+        "Supportive bra helps",
+        "Distinguish from the more persistent luteal phase tenderness which starts after ovulation"
+      ],
+      "related": [
+        9,
+        38,
+        69
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 55,
+    "fields": {
+      "name": "heat sensitivity",
+      "medical_term": "ovulatory heat intolerance",
+      "phase": 3,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "The rise in basal body temperature after ovulation increases sensitivity to environmental heat. Some notice feeling warmer than usual for several days around ovulation.",
+      "typical_start_day": 14,
+      "typical_end_day": 17,
+      "tips": [
+        "Stay hydrated as body temperature is elevated",
+        "Wear breathable fabrics",
+        "Avoid overheating during exercise"
+      ],
+      "related": [
+        70,
+        71,
+        98,
+        50
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 56,
+    "fields": {
+      "name": "food cravings",
+      "medical_term": "premenstrual food cravings",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.75,
+      "description": "Falling serotonin in the late luteal phase triggers intense cravings for carbohydrates and sugar, which transiently boost serotonin. Cravings for chocolate specifically may relate to magnesium depletion.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Complex carbohydrates such as oats, sweet potato and wholegrain bread are a healthier way to raise serotonin",
+        "Small frequent meals prevent the blood sugar crashes that intensify cravings",
+        "Dark chocolate satisfies chocolate cravings while providing magnesium",
+        "Magnesium supplementation may reduce the intensity of cravings over time"
+      ],
+      "related": [
+        90,
+        91,
+        89,
+        14,
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 57,
+    "fields": {
+      "name": "acne breakout",
+      "medical_term": "premenstrual acne",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "Progesterone increases sebum production and causes pore enlargement. Bacteria proliferate in excess sebum leading to inflammatory acne, typically on the chin, jawline and cheeks.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Double cleanse in the evening to remove the day's excess sebum",
+        "Salicylic acid (BHA) is particularly effective for hormonal acne",
+        "Avoid touching your face which transfers bacteria",
+        "Consistency in skincare routine matters more than adding more products",
+        "Speak to a dermatologist if hormonal acne is severe"
+      ],
+      "related": [
+        95,
+        34
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 58,
+    "fields": {
+      "name": "water retention",
+      "medical_term": "premenstrual edema",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.65,
+      "description": "Progesterone activates aldosterone, a hormone that signals the kidneys to retain sodium and water. This causes temporary weight gain and puffiness, particularly in the abdomen, face and fingers.",
+      "typical_start_day": 19,
+      "typical_end_day": 28,
+      "tips": [
+        "Paradoxically increasing water intake helps flush retained sodium and water",
+        "Reduce sodium intake from processed and packaged foods",
+        "Gentle exercise promotes lymphatic drainage and reduces puffiness",
+        "Avoid standing for long periods which worsens lower limb swelling"
+      ],
+      "related": [
+        6,
+        74,
+        64,
+        9,
+        91
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 59,
+    "fields": {
+      "name": "anxiety",
+      "medical_term": "premenstrual anxiety",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "Fluctuating progesterone metabolites affect GABA-A receptors in the brain \u2014 the same receptors targeted by anxiety medication. Simultaneously falling estrogen reduces serotonin, compounding anxious feelings.",
+      "typical_start_day": 21,
+      "typical_end_day": 28,
+      "tips": [
+        "Magnesium glycinate is the most evidence-based supplement for PMS-related anxiety",
+        "Limit caffeine which amplifies anxiety in the luteal phase",
+        "Regular aerobic exercise is as effective as medication for mild-to-moderate anxiety",
+        "Diaphragmatic breathing activates the parasympathetic nervous system and relieves acute anxiety",
+        "If anxiety is severe and cyclical consider speaking to a doctor about PMDD"
+      ],
+      "related": [
+        10,
+        60,
+        81,
+        72,
+        80,
+        100,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 60,
+    "fields": {
+      "name": "insomnia",
+      "medical_term": "premenstrual insomnia",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.45,
+      "description": "Despite progesterone's overall sedative effect, its fluctuations in the late luteal phase combined with physical discomfort, anxiety and elevated body temperature can significantly disrupt sleep architecture.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Maintain a consistent sleep and wake time throughout the cycle",
+        "Keep the bedroom cool \u2014 the elevated BBT of the luteal phase makes heat more disruptive",
+        "Avoid alcohol which worsens sleep quality despite feeling sedating",
+        "Magnesium glycinate at bedtime promotes deeper sleep",
+        "Avoid screens for 60 minutes before bed"
+      ],
+      "related": [
+        59,
+        67,
+        66,
+        81,
+        4,
+        71
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 61,
+    "fields": {
+      "name": "constipation",
+      "medical_term": "progesterone-induced constipation",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.5,
+      "description": "Progesterone relaxes smooth muscle throughout the body, including the intestinal walls. This slows peristalsis \u2014 the wave-like contractions that move food through the digestive tract \u2014 causing sluggish bowel movements.",
+      "typical_start_day": 16,
+      "typical_end_day": 28,
+      "tips": [
+        "Increase dietary fibre from vegetables, fruit and wholegrains",
+        "Stay well hydrated \u2014 fibre requires water to work",
+        "Regular physical activity is one of the most effective natural remedies for constipation",
+        "Prunes, flaxseed and kiwi fruit are evidence-based for bowel regularity",
+        "Do not ignore the urge to go \u2014 delaying makes constipation worse"
+      ],
+      "related": [
+        6,
+        22,
+        13,
+        58
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 62,
+    "fields": {
+      "name": "reduced concentration",
+      "medical_term": "premenstrual cognitive fog",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "Falling estrogen in the late luteal phase reduces cognitive sharpness, verbal fluency and working memory. This is a physiological change, not a character flaw.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Write everything down rather than relying on memory",
+        "Break complex tasks into smaller, more manageable steps",
+        "Schedule cognitively demanding work for earlier in the cycle if possible",
+        "Be patient and compassionate with yourself",
+        "This resolves naturally as menstruation begins and estrogen starts rising"
+      ],
+      "related": [
+        84,
+        85,
+        83,
+        39,
+        88,
+        82
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 63,
+    "fields": {
+      "name": "low back ache",
+      "medical_term": "premenstrual lumbar pain",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.45,
+      "description": "Progesterone causes ligament laxity throughout the body including the sacroiliac and lumbar ligaments. Pelvic congestion adds to the sensation of heaviness and achiness in the lower back.",
+      "typical_start_day": 23,
+      "typical_end_day": 28,
+      "tips": [
+        "Gentle lower back stretches such as child's pose and cat-cow provide relief",
+        "A heat pack on the lower back is effective",
+        "Avoid heavy lifting in this phase as ligament laxity increases injury risk",
+        "Core strengthening exercises over time reduce vulnerability to cycle-related back pain"
+      ],
+      "related": [
+        3,
+        24,
+        64,
+        26,
+        25,
+        1
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 64,
+    "fields": {
+      "name": "pelvic heaviness",
+      "medical_term": "premenstrual pelvic congestion",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.5,
+      "description": "Increased blood flow to the pelvic region in preparation for potential menstruation causes a sensation of fullness, heaviness or dragging in the pelvis and lower abdomen.",
+      "typical_start_day": 24,
+      "typical_end_day": 28,
+      "tips": [
+        "Lying with legs elevated can relieve the congestion sensation",
+        "Warm baths relax pelvic muscles",
+        "Gentle pelvic floor exercises improve circulation",
+        "The sensation resolves once menstruation begins"
+      ],
+      "related": [
+        13,
+        6,
+        58,
+        3,
+        23,
+        1
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 65,
+    "fields": {
+      "name": "heightened emotional sensitivity",
+      "medical_term": "premenstrual emotional hyperreactivity",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.65,
+      "description": "Falling estrogen and progesterone fluctuations affect the amygdala \u2014 the brain's emotional processing centre \u2014 increasing its reactivity to emotional stimuli. Things that would not normally be upsetting feel overwhelming.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Journaling helps process and externalise intense emotions",
+        "Inform close ones about your cycle so they can offer appropriate support",
+        "Avoid making major relationship or life decisions in the late luteal phase",
+        "Physical exercise reduces amygdala reactivity",
+        "This is a physiological change, not a personality trait"
+      ],
+      "related": [
+        10,
+        79,
+        80,
+        11,
+        59,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 66,
+    "fields": {
+      "name": "vivid dreams",
+      "medical_term": "progesterone-induced vivid dreams",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Elevated progesterone in the luteal phase is associated with more vivid, intense and emotionally charged dreaming. This is thought to be related to progesterone's effects on REM sleep architecture.",
+      "typical_start_day": 16,
+      "typical_end_day": 28,
+      "tips": [
+        "Keeping a dream journal is interesting if you are curious about your patterns",
+        "This is normal and not a cause for concern",
+        "If dreams are consistently disturbing they may reflect underlying anxiety worth addressing"
+      ],
+      "related": [
+        60,
+        67,
+        59
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 67,
+    "fields": {
+      "name": "sleep disturbances",
+      "medical_term": "premenstrual sleep disruption",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.45,
+      "description": "Multiple factors disrupt sleep in the luteal phase: elevated BBT, physical discomfort, anxiety, vivid dreams and progesterone-driven changes to sleep architecture including reduced REM sleep.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Consistent sleep schedule is the most effective intervention",
+        "Cool bedroom temperature counteracts elevated BBT",
+        "Avoid alcohol as it reduces sleep quality",
+        "Magnesium glycinate at bedtime promotes deeper more restorative sleep"
+      ],
+      "related": [
+        60,
+        66,
+        4,
+        71,
+        81,
+        59
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 68,
+    "fields": {
+      "name": "irritability",
+      "medical_term": "premenstrual irritability",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.65,
+      "description": "Falling estrogen reduces serotonin production and receptor sensitivity. Simultaneously, the neurosteroid metabolite of progesterone (allopregnanolone) fluctuates, affecting GABA and creating an irritable baseline.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Regular aerobic exercise is the most effective natural serotonin booster",
+        "Avoid excess sugar and refined carbohydrates which cause blood sugar spikes and crashes",
+        "Communicate with people close to you about luteal phase changes",
+        "If irritability is severe and cyclical this may be PMDD \u2014 speak to a doctor"
+      ],
+      "related": [
+        10,
+        59,
+        11,
+        65,
+        81,
+        79
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 69,
+    "fields": {
+      "name": "tender breasts",
+      "medical_term": "premenstrual breast fullness",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "The combination of progesterone and estrogen stimulation causes breast tissue to swell and ducts to expand, resulting in noticeable tenderness and fullness that resolves with menstruation.",
+      "typical_start_day": 17,
+      "typical_end_day": 28,
+      "tips": [
+        "Supportive bra including during sleep if severe",
+        "Reduce caffeine",
+        "Evening primrose oil at therapeutic dose",
+        "Cold compress for acute relief"
+      ],
+      "related": [
+        9,
+        107,
+        38
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 70,
+    "fields": {
+      "name": "hot flashes",
+      "medical_term": "premenstrual vasomotor symptoms",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.25,
+      "description": "Hormonal fluctuations in the late luteal phase can trigger vasomotor symptoms \u2014 sudden episodes of heat, flushing and sweating \u2014 similar to but less intense than menopausal hot flushes.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Wear breathable natural fabric layers that can be removed",
+        "Keep a small fan at your desk or bedside",
+        "Avoid spicy food, alcohol and hot drinks which are common triggers",
+        "A cool cloth on the back of the neck provides rapid relief"
+      ],
+      "related": [
+        71,
+        55,
+        17,
+        50,
+        67
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 71,
+    "fields": {
+      "name": "night sweats",
+      "medical_term": "premenstrual nocturnal hyperhidrosis",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.25,
+      "description": "The elevated basal body temperature of the luteal phase combined with hormonal fluctuations can cause excessive sweating during sleep, disrupting sleep quality.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Keep the bedroom cool \u2014 ideally 16\u201318\u00b0C",
+        "Use breathable cotton or moisture-wicking bedding",
+        "Avoid alcohol before bed which worsens night sweats",
+        "Keep a cool glass of water by the bed"
+      ],
+      "related": [
+        70,
+        60,
+        67,
+        17
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 72,
+    "fields": {
+      "name": "heart palpitations",
+      "medical_term": "premenstrual palpitations",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Hormonal fluctuations and the anxiety of the late luteal phase can cause an awareness of heartbeat or episodes of palpitations. These are typically benign but should be investigated if persistent or severe.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Reduce caffeine and alcohol intake",
+        "Practice slow diaphragmatic breathing during episodes",
+        "Track whether palpitations are consistently premenstrual",
+        "Consult a doctor if palpitations are severe, prolonged or accompanied by chest pain"
+      ],
+      "related": [
+        59,
+        21,
+        70,
+        81,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 73,
+    "fields": {
+      "name": "dry mouth",
+      "medical_term": "luteal xerostomia",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Progesterone can reduce saliva production in some people, causing a dry or sticky mouth sensation in the luteal phase.",
+      "typical_start_day": 16,
+      "typical_end_day": 28,
+      "tips": [
+        "Stay well hydrated",
+        "Chew sugar-free gum to stimulate saliva production",
+        "Avoid alcohol and caffeine which worsen dry mouth",
+        "A water spray can provide immediate relief"
+      ],
+      "related": [
+        117,
+        114,
+        27
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 74,
+    "fields": {
+      "name": "weight gain",
+      "medical_term": "premenstrual weight gain",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.5,
+      "description": "Water and sodium retention driven by progesterone and aldosterone cause temporary weight gain of 1\u20133kg in the luteal phase. This is entirely fluid, not fat, and resolves with menstruation.",
+      "typical_start_day": 19,
+      "typical_end_day": 28,
+      "tips": [
+        "This is water weight, not fat \u2014 it will resolve once your period begins",
+        "Reducing salt intake moderates the degree of water retention",
+        "Weigh yourself at the same phase each cycle for meaningful comparison",
+        "Do not restrict food in response to this temporary change"
+      ],
+      "related": [
+        58,
+        6,
+        14,
+        89,
+        91
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 75,
+    "fields": {
+      "name": "vaginal dryness",
+      "medical_term": "luteal vaginal dryness",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Falling estrogen in the late luteal phase can cause reduced vaginal lubrication and mild dryness, distinct from the fertile mucus of the follicular and ovulation phases.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Water-based lubricants provide immediate relief",
+        "Stay hydrated",
+        "This resolves as estrogen rises again in the next follicular phase"
+      ],
+      "related": [
+        76,
+        98
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 76,
+    "fields": {
+      "name": "painful intercourse",
+      "medical_term": "premenstrual dyspareunia",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Vaginal dryness and pelvic congestion in the late luteal phase can make intercourse uncomfortable or painful.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Use a lubricant",
+        "Communicate with your partner",
+        "Pelvic tenderness typically resolves with menstruation"
+      ],
+      "related": [
+        75,
+        23,
+        13
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 77,
+    "fields": {
+      "name": "social withdrawal",
+      "medical_term": "premenstrual social withdrawal",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "Low energy, heightened emotional sensitivity and reduced social confidence in the late luteal phase drive a natural tendency to seek solitude and withdraw from social commitments.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Gentle social plans with trusted people can be beneficial",
+        "Do not force large or demanding social events in the late luteal phase",
+        "Let close ones know how you feel rather than withdrawing without explanation",
+        "This is a healthy response to conserve energy \u2014 honour it where possible"
+      ],
+      "related": [
+        11,
+        59,
+        4,
+        78,
+        80,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 78,
+    "fields": {
+      "name": "low self esteem",
+      "medical_term": "premenstrual negative self-perception",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.4,
+      "description": "Falling estrogen and dopamine reduce the brain's reward signalling and self-valuation mechanisms, causing a temporary but significant dip in self-confidence and self-worth.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Avoid making major decisions about your body, relationships or career in this phase",
+        "Remind yourself this is a hormonal shift, not an accurate reflection of reality",
+        "Self-compassion practices and journaling help",
+        "This reliably resolves with the next cycle"
+      ],
+      "related": [
+        11,
+        77,
+        10,
+        79,
+        80
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 79,
+    "fields": {
+      "name": "crying spells",
+      "medical_term": "premenstrual emotional lability",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "Rapid and significant hormone fluctuations in the late luteal phase lower the threshold for emotional responses, making crying more frequent and sometimes disproportionate to the trigger.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Allow yourself to cry \u2014 suppressing it increases distress",
+        "Journaling before bed can process emotions that might otherwise surface as crying spells",
+        "Vigorous exercise is effective at discharging emotional tension",
+        "Share with trusted people rather than feeling alone with it"
+      ],
+      "related": [
+        11,
+        10,
+        65,
+        80,
+        78,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 80,
+    "fields": {
+      "name": "overwhelm",
+      "medical_term": "premenstrual overwhelm",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "Reduced cognitive bandwidth, heightened emotional reactivity and physical discomfort combine in the late luteal phase to make ordinary demands feel unmanageable.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Simplify your schedule and obligations during the late luteal phase",
+        "Delegate tasks where possible",
+        "Break everything into the smallest possible steps",
+        "Say no to non-essential commitments without guilt",
+        "Rest is productive in this phase"
+      ],
+      "related": [
+        59,
+        10,
+        79,
+        81,
+        82,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 81,
+    "fields": {
+      "name": "restlessness",
+      "medical_term": "premenstrual restlessness",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.4,
+      "description": "Anxiety and sleep disruption in the late luteal phase create an uncomfortable inability to relax, settle or feel at ease \u2014 a restless, agitated baseline.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Moderate aerobic exercise is the most effective intervention for restlessness",
+        "Mindfulness and body scan meditations help ground scattered energy",
+        "Reduce caffeine intake which amplifies restlessness",
+        "Magnesium glycinate at bedtime reduces nighttime restlessness"
+      ],
+      "related": [
+        59,
+        60,
+        44,
+        80,
+        72,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 82,
+    "fields": {
+      "name": "difficulty making decisions",
+      "medical_term": "premenstrual indecisiveness",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.45,
+      "description": "Brain fog, emotional hyperreactivity and reduced working memory in the late luteal phase make decision-making significantly harder. Both options feel equally bad or equally good.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Delay non-urgent decisions until after your period if possible",
+        "Write out a simple pros and cons list to externalise the decision",
+        "Avoid making irreversible decisions in the late luteal phase",
+        "Trust your gut for small decisions \u2014 analysis paralysis is worse now"
+      ],
+      "related": [
+        84,
+        62,
+        80,
+        83,
+        85
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 83,
+    "fields": {
+      "name": "forgetfulness",
+      "medical_term": "premenstrual working memory impairment",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.45,
+      "description": "Estrogen is a key regulator of hippocampal memory function. Its decline in the late luteal phase measurably impairs working memory and name recall.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Use reminders, lists and notes extensively during this phase",
+        "Put important items in the same place every time",
+        "Do not be hard on yourself \u2014 this is a well-documented neurological effect",
+        "Resolves with the next cycle as estrogen rises"
+      ],
+      "related": [
+        85,
+        84,
+        62,
+        82
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 84,
+    "fields": {
+      "name": "brain fog",
+      "medical_term": "premenstrual cognitive impairment",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "The convergence of falling estrogen, progesterone fluctuations and sleep disruption in the late luteal phase creates a subjective experience of mental cloudiness, slow processing and difficulty thinking clearly.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Write things down rather than relying on working memory",
+        "Break tasks into micro-steps",
+        "Adequate sleep is the single most important factor in reducing brain fog",
+        "Omega-3 fatty acids support neurological function",
+        "Be patient \u2014 this is temporary and resolves with the cycle"
+      ],
+      "related": [
+        62,
+        85,
+        83,
+        4,
+        88,
+        82
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 85,
+    "fields": {
+      "name": "memory issues",
+      "medical_term": "premenstrual memory impairment",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.4,
+      "description": "Estrogen supports long-term memory encoding in the hippocampus. Its decline in the late luteal phase measurably reduces memory consolidation and verbal recall.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Use reminders and calendar alerts for important tasks",
+        "Spaced repetition learning is less effective in this phase",
+        "Avoid self-criticism \u2014 this is physiological not a sign of cognitive decline"
+      ],
+      "related": [
+        84,
+        83,
+        62,
+        39
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 86,
+    "fields": {
+      "name": "poor coordination",
+      "medical_term": "premenstrual dyscoordination",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Progesterone and its neurosteroid metabolites can subtly affect motor control, proprioception and spatial awareness in the late luteal phase.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Take extra care with tasks requiring fine motor precision",
+        "Avoid high-risk activities requiring sharp coordination if feeling significantly affected",
+        "Rest if needed"
+      ],
+      "related": [
+        87,
+        88,
+        84,
+        21
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 87,
+    "fields": {
+      "name": "clumsiness",
+      "medical_term": "premenstrual motor impairment",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Hormonal effects on spatial processing and motor coordination make people more prone to dropping things, bumping into objects and misjudging distances in the late luteal phase.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Take your time with physical tasks",
+        "Be extra careful in the kitchen or with fragile items",
+        "Acknowledge this as a known luteal phase phenomenon rather than personal ineptitude"
+      ],
+      "related": [
+        86,
+        88,
+        84
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 88,
+    "fields": {
+      "name": "slow reaction time",
+      "medical_term": "progesterone-related reaction slowing",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Progesterone's sedative neurological effect and the cognitive fog of the late luteal phase measurably slow reaction time and processing speed.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Avoid driving when very fatigued in the late luteal phase",
+        "Avoid high-speed or high-precision tasks if significantly affected",
+        "Rest improves reaction time more than pushing through"
+      ],
+      "related": [
+        87,
+        86,
+        84,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 89,
+    "fields": {
+      "name": "excessive appetite",
+      "medical_term": "premenstrual hyperphagia",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "Falling serotonin and progesterone's effect on appetite-regulating hormones increase hunger, particularly for calorie-dense carbohydrate-rich foods. Metabolic rate is also slightly elevated in the luteal phase.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Eat protein and fat-rich meals which are more satiating and don't spike blood sugar",
+        "Do not severely restrict food \u2014 this worsens cravings and mood",
+        "Plan nutritious satisfying snacks in advance",
+        "The metabolic rate is genuinely elevated so needing more food is physiological"
+      ],
+      "related": [
+        56,
+        90,
+        91,
+        14,
+        74
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 90,
+    "fields": {
+      "name": "sugar cravings",
+      "medical_term": "premenstrual carbohydrate cravings",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.7,
+      "description": "Low serotonin in the late luteal phase drives specific cravings for sugar and refined carbohydrates, which cause a rapid but transient serotonin boost via insulin-driven tryptophan uptake.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Complex carbohydrates (oats, wholegrains, sweet potato) provide a gentler, more sustained serotonin response",
+        "Dark chocolate satisfies sweet cravings while providing magnesium and antioxidants",
+        "Magnesium supplementation reduces cravings over multiple cycles",
+        "Eating protein with every meal blunts blood sugar spikes that worsen cravings"
+      ],
+      "related": [
+        56,
+        91,
+        89,
+        10,
+        68
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 91,
+    "fields": {
+      "name": "salt cravings",
+      "medical_term": "premenstrual sodium cravings",
+      "phase": 4,
+      "severity": "medium",
+      "probability": 0.5,
+      "description": "Aldosterone-driven sodium retention paradoxically increases salt cravings. Progesterone also increases the perception of salt taste making salty foods more rewarding.",
+      "typical_start_day": 19,
+      "typical_end_day": 28,
+      "tips": [
+        "Opt for healthier salty options such as nuts, seeds and olives rather than crisps and processed food",
+        "Be mindful that excess sodium will worsen water retention and bloating",
+        "A small amount of salt is fine \u2014 severe restriction is not necessary or helpful"
+      ],
+      "related": [
+        56,
+        90,
+        58,
+        6,
+        74
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 92,
+    "fields": {
+      "name": "caffeine sensitivity",
+      "medical_term": "premenstrual caffeine hypersensitivity",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.3,
+      "description": "Hormonal fluctuations in the luteal phase alter the metabolism of caffeine and increase neurological sensitivity to its stimulant effects, making the same dose feel stronger and more anxiety-provoking.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Reduce caffeine intake to one cup per day or switch to half-caf",
+        "Avoid caffeine after midday as it disrupts already-fragile sleep",
+        "Herbal teas such as chamomile, lemon balm and passionflower are calming alternatives"
+      ],
+      "related": [
+        5,
+        59,
+        72,
+        60,
+        81
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 93,
+    "fields": {
+      "name": "alcohol sensitivity",
+      "medical_term": "premenstrual alcohol intolerance",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Hormonal fluctuations in the luteal phase alter liver enzyme activity and neurotransmitter sensitivity, making alcohol feel stronger, worsen mood more severely and cause worse hangovers.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Reduce alcohol intake significantly in the late luteal phase",
+        "Alcohol worsens anxiety, sleep quality and depressive symptoms in this phase",
+        "Alternate with sparkling water if at social events"
+      ],
+      "related": [
+        7,
+        5,
+        10,
+        11,
+        60
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 94,
+    "fields": {
+      "name": "alcohol cravings",
+      "medical_term": "premenstrual alcohol cravings",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Low mood, anxiety and social discomfort in the late luteal phase can trigger cravings for alcohol as a self-medication for psychological distress.",
+      "typical_start_day": 22,
+      "typical_end_day": 28,
+      "tips": [
+        "Exercise is a more effective and durable mood booster than alcohol",
+        "Identify the underlying feeling driving the craving \u2014 often anxiety or low mood",
+        "Speak to a doctor if alcohol use feels difficult to manage in a cyclical pattern"
+      ],
+      "related": [
+        56,
+        10,
+        59,
+        11,
+        77
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 95,
+    "fields": {
+      "name": "skin changes",
+      "medical_term": "premenstrual sebaceous changes",
+      "phase": 4,
+      "severity": "low",
+      "probability": 0.4,
+      "description": "Progesterone increases sebum production, enlarges pores and increases skin's inflammatory response making the luteal phase the most acne-prone part of the cycle.",
+      "typical_start_day": 20,
+      "typical_end_day": 28,
+      "tips": [
+        "Adjust skincare to include more salicylic acid products in the luteal phase",
+        "Use non-comedogenic makeup and skincare",
+        "Avoid picking at skin which worsens inflammation and scarring"
+      ],
+      "related": [
+        57,
+        34,
+        97,
+        96
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 96,
+    "fields": {
+      "name": "hair loss",
+      "medical_term": "hormonal telogen effluvium",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Rapid hormonal fluctuations, iron depletion from menstrual blood loss and stress can trigger telogen effluvium \u2014 a temporary increase in hair shedding noticed most during washing or brushing.",
+      "typical_start_day": 1,
+      "typical_end_day": 7,
+      "tips": [
+        "Eat iron-rich and protein-rich foods to support hair follicle health",
+        "Gentle hair care and avoiding tight styles reduces mechanical hair loss",
+        "Consult a doctor if shedding is severe \u2014 a blood test can identify nutritional deficiencies"
+      ],
+      "related": [
+        4,
+        95,
+        97,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 97,
+    "fields": {
+      "name": "nail changes",
+      "medical_term": "hormonal nail changes",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.1,
+      "description": "Hormonal fluctuations and nutritional changes around menstruation can cause nails to become temporarily more brittle, soft or prone to peeling.",
+      "typical_start_day": 1,
+      "typical_end_day": 7,
+      "tips": [
+        "Use a nail strengthening treatment",
+        "Eat protein and biotin-rich foods (eggs, nuts, seeds)",
+        "Keep nails short to prevent breakage during this phase"
+      ],
+      "related": [
+        95,
+        96,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 98,
+    "fields": {
+      "name": "cold sensitivity",
+      "medical_term": "menstrual cold intolerance",
+      "phase": 1,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Blood loss reduces hemoglobin and impairs circulation, leading to increased sensitivity to cold particularly in the hands and feet. Low iron compounds this effect.",
+      "typical_start_day": 1,
+      "typical_end_day": 5,
+      "tips": [
+        "Layer clothing for easy temperature regulation",
+        "Warm drinks and soups help maintain core temperature",
+        "Iron-rich foods improve oxygen-carrying capacity and circulation over time",
+        "Thermal gloves and socks help during particularly cold weather"
+      ],
+      "related": [
+        12,
+        17,
+        55,
+        75,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 99,
+    "fields": {
+      "name": "missed period",
+      "medical_term": "primary amenorrhea or secondary amenorrhea",
+      "phase": 5,
+      "severity": "high",
+      "probability": 1.0,
+      "description": "Menstruation has not started by the expected date. Causes range from pregnancy to stress, thyroid dysfunction, PCOS, extreme weight changes, and excessive exercise. Defined clinically as late after 5 days past expected start.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Take a pregnancy test if sexually active and period is more than 5 days late",
+        "Track how many days late for useful information for a doctor",
+        "Consult a GP if periods are consistently late or absent for more than 3 months",
+        "Stress is the most common benign cause of a late period"
+      ],
+      "related": [
+        100,
+        59,
+        101,
+        104
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 100,
+    "fields": {
+      "name": "cycle delay anxiety",
+      "medical_term": "period-delay-related anxiety",
+      "phase": 5,
+      "severity": "high",
+      "probability": 0.75,
+      "description": "Uncertainty about the cause of a delayed period generates significant anxiety, which itself can further suppress ovulation and delay the period creating a self-perpetuating cycle.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Taking a pregnancy test removes the uncertainty that fuels anxiety",
+        "Stress is the most common non-pathological cause of a late period",
+        "Track other possible causes: travel, illness, significant life stress, changes in weight or exercise",
+        "Speak to a doctor if late periods are a recurring pattern"
+      ],
+      "related": [
+        59,
+        99,
+        81,
+        60,
+        80
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 101,
+    "fields": {
+      "name": "continued PMS symptoms",
+      "medical_term": "prolonged luteal phase syndrome",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.7,
+      "description": "When the period is late, luteal phase symptoms such as bloating, breast tenderness, mood changes and fatigue continue beyond the expected start date as progesterone is maintained.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Treat symptoms as you would normal PMS",
+        "They should resolve once menstruation begins",
+        "If symptoms are severe and prolonged speak to a doctor"
+      ],
+      "related": [
+        6,
+        9,
+        10,
+        4,
+        99
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 102,
+    "fields": {
+      "name": "increased urination",
+      "medical_term": "early pregnancy polyuria",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.25,
+      "description": "Rising hCG in early pregnancy stimulates increased renal blood flow and kidney filtration rate, causing noticeably more frequent urination before a missed period is even confirmed.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Take a pregnancy test if this symptom is new and combined with a late period",
+        "Can also be caused by increased water intake, caffeine, or a urinary tract infection",
+        "UTI should be considered if urination is painful or burning"
+      ],
+      "related": [
+        115,
+        116,
+        117,
+        99
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 103,
+    "fields": {
+      "name": "spotting",
+      "medical_term": "anovulatory or implantation spotting",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.2,
+      "description": "Light pink or brown spotting occurring when a period is late may represent implantation bleeding (6\u201312 days post-conception) or spotting from an anovulatory cycle where no ovulation occurred.",
+      "typical_start_day": 29,
+      "typical_end_day": 32,
+      "tips": [
+        "Implantation bleeding is considerably lighter and shorter than a normal period",
+        "Take a pregnancy test 3\u20134 days after spotting if a period is overdue",
+        "Brown spotting indicates old blood and is not an emergency",
+        "Consult a doctor if spotting is heavy or prolonged"
+      ],
+      "related": [
+        37,
+        47,
+        111,
+        36
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 104,
+    "fields": {
+      "name": "pelvic cramping without bleeding",
+      "medical_term": "anovulatory cramping",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.4,
+      "description": "The uterus may begin contracting in preparation for menstruation even when the period is delayed. Cramping without bleeding is common in the days immediately before a late period arrives.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "A heating pad provides comfort",
+        "Ibuprofen helps if cramps are significant",
+        "If cramping is severe without any bleeding and a pregnancy test is positive seek medical attention \u2014 this can indicate an ectopic pregnancy"
+      ],
+      "related": [
+        1,
+        23,
+        13,
+        99,
+        22,
+        112
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 105,
+    "fields": {
+      "name": "heightened smell sensitivity",
+      "medical_term": "early hyperosmia",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "A sudden and significant increase in sensitivity to smells is a well-recognised early pregnancy sign, thought to be caused by rapidly rising estrogen and hCG. Common triggers are cooking smells, perfumes and cigarette smoke.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Take a pregnancy test if this symptom is new and combined with a late period",
+        "Avoid known trigger smells",
+        "Fresh air and cool environments help with smell-triggered nausea",
+        "Peppermint and lemon scents are often well tolerated and can counteract nausea"
+      ],
+      "related": [
+        113,
+        49,
+        7,
+        106,
+        109
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 106,
+    "fields": {
+      "name": "food aversions",
+      "medical_term": "early pregnancy food aversions",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Strong aversions to previously tolerated foods, particularly strong-smelling or fatty foods, are an early pregnancy sign caused by rising hCG and estrogen affecting the olfactory and taste systems.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Eat whatever you can tolerate without forcing foods that trigger aversion",
+        "Cold foods are often better tolerated than hot foods as they release fewer odour molecules",
+        "Take a pregnancy test if food aversions are new and you have a late period"
+      ],
+      "related": [
+        7,
+        105,
+        109,
+        114
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 107,
+    "fields": {
+      "name": "breast sensitivity",
+      "medical_term": "prolonged cyclic mastalgia",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "Continued elevated progesterone from an extended luteal phase or the rapid rise of hCG in early pregnancy maintains and often intensifies breast sensitivity and fullness beyond the expected period.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "A well-fitting supportive bra helps",
+        "Persistent and worsening breast tenderness alongside a late period may indicate early pregnancy",
+        "Tenderness from an extended luteal phase resolves once menstruation begins"
+      ],
+      "related": [
+        9,
+        38,
+        69,
+        58
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 108,
+    "fields": {
+      "name": "prolonged luteal symptoms",
+      "medical_term": "extended luteal phase symptoms",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.6,
+      "description": "When the luteal phase extends beyond its usual 14 days, all progesterone-driven symptoms including bloating, mood changes, sleep disruption and fatigue continue and may intensify.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Treat as you would normal PMS symptoms",
+        "Should resolve once menstruation begins",
+        "If the luteal phase is consistently long speak to a doctor about progesterone levels"
+      ],
+      "related": [
+        101,
+        6,
+        9,
+        4,
+        10
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 109,
+    "fields": {
+      "name": "early pregnancy nausea",
+      "medical_term": "morning sickness",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.35,
+      "description": "Rising hCG levels, often doubling every 48 hours in early pregnancy, are the primary driver of nausea. Contrary to the name, this can occur at any time of day. Typically starts around 6 weeks after the last period.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Small frequent meals prevent an empty stomach which worsens nausea",
+        "Ginger in all forms (tea, biscuits, capsules) has the best evidence for pregnancy nausea",
+        "Cold and bland foods are generally better tolerated",
+        "Vitamin B6 supplementation has evidence for morning sickness",
+        "Seek medical attention if vomiting prevents any food or fluid intake"
+      ],
+      "related": [
+        7,
+        52,
+        106,
+        105,
+        21,
+        114
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 110,
+    "fields": {
+      "name": "prolonged fatigue",
+      "medical_term": "early pregnancy or luteal phase fatigue",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.65,
+      "description": "Continued elevated progesterone maintains its sedative effect. In early pregnancy, rising hCG and the significant metabolic demands of implantation cause profound fatigue even before a positive test.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Rest as much as circumstances allow \u2014 this fatigue is physiological and significant",
+        "Iron and B12 levels are worth checking if fatigue is severe",
+        "Light walking is energising but avoid high-intensity exercise if very fatigued",
+        "Small protein-rich snacks every 2\u20133 hours maintain blood sugar and energy"
+      ],
+      "related": [
+        4,
+        67,
+        11,
+        84,
+        16
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 111,
+    "fields": {
+      "name": "implantation spotting",
+      "medical_term": "implantation bleeding",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "When a fertilised embryo implants into the uterine lining, a small amount of bleeding can occur 6\u201312 days after conception. This appears as very light pink or brown spotting lasting 1\u20132 days, significantly lighter than a normal period.",
+      "typical_start_day": 29,
+      "typical_end_day": 32,
+      "tips": [
+        "Implantation bleeding is much lighter and shorter than a period",
+        "It occurs around the time a period might be expected which can cause confusion",
+        "Take a pregnancy test 3\u20134 days after noticing spotting if a period is overdue",
+        "Brown spotting is old blood and is not a cause for alarm"
+      ],
+      "related": [
+        103,
+        37,
+        104,
+        52
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 112,
+    "fields": {
+      "name": "anovulatory cramping",
+      "medical_term": "anovulatory pelvic pain",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.3,
+      "description": "In cycles where ovulation does not occur (anovulatory cycles), the absence of progesterone following normal luteal phase development can cause irregular cramping without the usual cyclical pattern.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Heating pad provides comfort",
+        "Consult a doctor if anovulatory cycles are suspected to recur \u2014 PCOS and thyroid disorders can cause this",
+        "Tracking cycle patterns over time helps identify anovulatory cycles"
+      ],
+      "related": [
+        1,
+        23,
+        13,
+        104,
+        99
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 113,
+    "fields": {
+      "name": "hyperosmia",
+      "medical_term": "hyperosmia",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "A clinically recognised heightening of olfactory sensitivity, hyperosmia in the context of a late period is considered an early pregnancy indicator. The mechanism involves estrogen's effect on olfactory neurons.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Take a pregnancy test if this is new and combined with a late period",
+        "Avoid known trigger smells",
+        "Fresh air helps",
+        "Peppermint scent is often well tolerated"
+      ],
+      "related": [
+        105,
+        49,
+        7,
+        106
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 114,
+    "fields": {
+      "name": "metallic taste",
+      "medical_term": "dysgeusia",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "A persistent metallic or bitter taste in the mouth is a commonly reported early pregnancy symptom caused by rising estrogen and hCG altering taste receptor sensitivity.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Drinking water frequently helps",
+        "Citrus flavours (lemon water, citrus gum) neutralise the metallic taste effectively",
+        "Cold foods have less taste intensity than hot foods",
+        "Take a pregnancy test if this is new alongside a late period"
+      ],
+      "related": [
+        73,
+        7,
+        109,
+        105,
+        106
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 115,
+    "fields": {
+      "name": "frequent urination",
+      "medical_term": "pollakiuria",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.2,
+      "description": "Early pregnancy increases blood volume and renal filtration rate, causing noticeably increased urinary frequency even before a period is significantly late.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Stay hydrated despite the inconvenience",
+        "Rule out UTI if urination is painful, burning or bloody",
+        "Take a pregnancy test if combined with a late period"
+      ],
+      "related": [
+        116,
+        102,
+        117,
+        99
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 116,
+    "fields": {
+      "name": "urinary urgency",
+      "medical_term": "premenstrual urinary urgency",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Pelvic congestion from an extended luteal phase or early pregnancy can create pressure on the bladder causing a sudden urgent need to urinate.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Pelvic floor exercises (Kegels) improve bladder control over time",
+        "Consult a doctor if urgency is new and persistent",
+        "Rule out UTI"
+      ],
+      "related": [
+        115,
+        102,
+        13
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 117,
+    "fields": {
+      "name": "excessive thirst",
+      "medical_term": "polydipsia",
+      "phase": 5,
+      "severity": "low",
+      "probability": 0.15,
+      "description": "Early pregnancy increases blood volume requiring more fluid intake. Rising hCG also affects fluid regulation signalling, increasing thirst.",
+      "typical_start_day": 30,
+      "typical_end_day": 35,
+      "tips": [
+        "Stay hydrated",
+        "Monitor if accompanied by frequent urination and fatigue \u2014 together these warrant a pregnancy test and possibly a blood glucose check"
+      ],
+      "related": [
+        115,
+        102,
+        73,
+        114
+      ]
+    }
+  },
+  {
+    "model": "cycle.Symptom",
+    "pk": 118,
+    "fields": {
+      "name": "low mood late",
+      "medical_term": "late phase depressed mood",
+      "phase": 5,
+      "severity": "medium",
+      "probability": 0.55,
+      "description": "The uncertainty of a late period, continued hormonal imbalance and extended PMS symptoms compound to create significant low mood when a period is overdue.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "tips": [
+        "Address the uncertainty directly by taking a pregnancy test",
+        "Reach out to a trusted friend or family member",
+        "Consult a doctor if late periods and low mood are a recurring cyclical pattern \u2014 PMDD is treatable"
+      ],
+      "related": [
+        11,
+        59,
+        77,
+        4,
+        80,
+        100
+      ]
+    }
+  }
+]

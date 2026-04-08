@@ -1,0 +1,76 @@
+[
+  {
+    "model": "cycle.Phase",
+    "pk": 1,
+    "fields": {
+      "name": "menstrual",
+      "description": "The uterine lining sheds. Estrogen and progesterone are at their lowest. Bleeding occurs and prostaglandins drive contractions.",
+      "typical_start_day": 1,
+      "typical_end_day": 7,
+      "dominant_hormones": [
+        "low estrogen",
+        "low progesterone",
+        "prostaglandins"
+      ]
+    }
+  },
+  {
+    "model": "cycle.Phase",
+    "pk": 2,
+    "fields": {
+      "name": "follicular",
+      "description": "Estrogen rises steadily as follicles develop in the ovaries. Energy and mood improve. Overlaps with menstruation in the first few days.",
+      "typical_start_day": 1,
+      "typical_end_day": 13,
+      "dominant_hormones": [
+        "rising estrogen",
+        "FSH",
+        "low progesterone"
+      ]
+    }
+  },
+  {
+    "model": "cycle.Phase",
+    "pk": 3,
+    "fields": {
+      "name": "ovulation",
+      "description": "A surge in LH triggers the release of a mature egg from the dominant follicle. Estrogen and testosterone peak simultaneously.",
+      "typical_start_day": 11,
+      "typical_end_day": 17,
+      "dominant_hormones": [
+        "LH surge",
+        "peak estrogen",
+        "rising testosterone"
+      ]
+    }
+  },
+  {
+    "model": "cycle.Phase",
+    "pk": 4,
+    "fields": {
+      "name": "luteal",
+      "description": "The corpus luteum produces progesterone after ovulation. If no pregnancy occurs, it degenerates and the cycle restarts.",
+      "typical_start_day": 15,
+      "typical_end_day": 28,
+      "dominant_hormones": [
+        "rising progesterone",
+        "moderate estrogen",
+        "falling estrogen late phase"
+      ]
+    }
+  },
+  {
+    "model": "cycle.Phase",
+    "pk": 5,
+    "fields": {
+      "name": "late",
+      "description": "The period is overdue. Could indicate pregnancy, stress, illness, or cycle irregularity. Progesterone may be sustained or disrupted.",
+      "typical_start_day": 29,
+      "typical_end_day": 35,
+      "dominant_hormones": [
+        "uncertain \u2014 sustained progesterone or hormonal disruption",
+        "possible hCG"
+      ]
+    }
+  }
+]
