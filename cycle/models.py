@@ -12,11 +12,16 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
-    date_of_birth = models.DateTimeField()
+    username = None
+    email = models.EmailField(unique=True)
+    date_of_birth = models.DateField()
     uses_hormonal_contraception = models.BooleanField(default=False)
     is_trying_to_conceive = models.BooleanField(default=False)
     kalman_estimate = models.FloatField(default=28.0)
     kalman_error = models.FloatField(default=10.0)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
 class FlowLevel(models.TextChoices):
@@ -64,7 +69,7 @@ class Day(models.Model):
         choices=FlowLevel.choices,
         default=FlowLevel.NONE
     )
-    symptoms = models.ManyToManyField('cycle.Symptom', blank=True, null=True)
+    symptoms = models.ManyToManyField('cycle.Symptom', blank=True)
     spotting = models.BooleanField(default=False)
     notes = models.TextField(
         validators=(MaxLengthValidator(2000),),
@@ -93,7 +98,11 @@ class Day(models.Model):
 class Symptom(models.Model):
     name = models.CharField(max_length=100 ,unique=True)
     medical_term = models.CharField(max_length=200)
-    phase = models.ForeignKey('cycle.Phase', on_delete=models.CASCADE)
+    phase = models.ForeignKey(
+        'cycle.Phase',
+        on_delete=models.CASCADE,
+        related_name='symptoms'
+    )
     severity = models.CharField(
         max_length=10,
         choices=SeverityLevel.choices
@@ -111,7 +120,7 @@ class Symptom(models.Model):
         constraints = [
             CheckConstraint(
                 condition=Q(typical_end_day__gte=F('typical_start_day')),
-                name='typical_end_day_after_typical_start_day'
+                name='symptom_typical_end_day_after_start_day'
             )
         ]
 
