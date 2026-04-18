@@ -30,6 +30,9 @@ ALLOWED_HOSTS = [ elem for elem in getenv('DJANGO_ALLOWED_HOSTS', '').split() if
 
 AUTH_USER_MODEL = 'cycle.User'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
 
 # Application definition
 

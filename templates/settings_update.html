@@ -115,10 +115,13 @@
   {# Auth actions #}
   <div class="section-hd mt-12"><span class="section-title">Account</span></div>
   <div class="card" style="overflow:hidden">
-    <a href="{% url 'logout' %}" class="list-row" style="color:#ff453a">
-      <div class="row-icon" style="background:rgba(255,69,58,.12);font-size:18px">🚪</div>
-      <div class="row-body"><div class="row-title" style="color:#ff453a">Sign out</div></div>
-    </a>
+    <form method="post" action="{% url 'logout' %}" style="margin:0">
+      {% csrf_token %}
+      <button type="submit" class="list-row" style="width:100%;background:none;border:none;cursor:pointer;text-align:left">
+        <div class="row-icon" style="background:rgba(255,69,58,.12);font-size:18px">🚪</div>
+        <div class="row-body"><div class="row-title" style="color:#ff453a">Sign out</div></div>
+      </button>
+    </form>
   </div>
 
   <div style="height:24px"></div>

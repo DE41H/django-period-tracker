@@ -12,6 +12,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "django-stubs>=6.0.2",
+    "python-dotenv[cli]>=1.2.2",
     "ruff>=0.15.9",
 ]
 

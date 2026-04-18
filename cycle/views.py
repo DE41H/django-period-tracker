@@ -193,7 +193,15 @@ class DayCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['date'] = timezone.now().date()
+        date_param = self.request.GET.get('date')
+        if date_param:
+            from datetime import datetime
+            try:
+                initial['date'] = datetime.strptime(date_param, '%Y-%m-%d').date()
+            except ValueError:
+                initial['date'] = timezone.now().date()
+        else:
+            initial['date'] = timezone.now().date()
         return initial
 
     def form_valid(self, form):
