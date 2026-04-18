@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load cycle_tags %}
+{% block title %}Luna — Calendar{% endblock %}
+{% block page_title %}{{ month_name }} {{ year }}{% endblock %}
+{% block snav_calendar %}active{% endblock %}
+{% block bnav_calendar %}active{% endblock %}
+
+{% block topbar_right %}
+<a href="{% url 'day_create' %}" class="topbar-action">+ Log</a>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .cal-nav{display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0 8px}
+  .cal-nav-title{font-size:20px;font-weight:700;letter-spacing:-.4px}
+  .cal-arrow{width:36px;height:36px;border-radius:50%;
+    background:var(--surface);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;color:var(--text2);font-size:18px;
+    transition:background .15s}
+  .cal-arrow:active{background:var(--surface2)}
+
+  .cal-grid{width:100%;border-collapse:collapse}
+  .cal-head th{padding:6px 0;text-align:center;font-size:12px;font-weight:600;
+    color:var(--text3);text-transform:uppercase;letter-spacing:.4px;width:14.28%}
+  .cal-head th:first-child{color:#ff453a}/* Sunday */
+
+  .cal-cell{padding:3px;text-align:center;vertical-align:top}
+  .cal-day{
+    width:42px;height:42px;border-radius:50%;margin:0 auto;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    cursor:pointer;text-decoration:none;transition:background .12s;
+    position:relative;gap:1px}
+  .cal-day-num{font-size:15px;font-weight:500;line-height:1}
+  .cal-dots{display:flex;gap:2px;align-items:center;justify-content:center;
+    position:absolute;bottom:4px;left:50%;transform:translateX(-50%)}
+  .cal-dot{width:4px;height:4px;border-radius:50%}
+
+  /* Day states */
+  .cal-day.today{
+    background:var(--surface2);
+    box-shadow:0 0 0 2px #fff;
+  }
+  .cal-day.today .cal-day-num{font-weight:800}
+  .cal-day.has-flow{background:var(--rose-soft)}
+  .cal-day.has-flow .cal-day-num{color:var(--rose);font-weight:700}
+  .cal-day.is-fertile{box-shadow:0 0 0 1.5px var(--green)}
+  .cal-day.is-prediction{opacity:.6}
+  .cal-day.is-prediction.has-flow{border:1.5px dashed var(--rose);background:transparent}
+  .cal-day.is-prediction.is-fertile{box-shadow:none;border:1.5px dashed var(--green)}
+  .cal-day.is-spotting{background:var(--amber-soft)}
+  .cal-day:active{background:var(--surface2)}
+  .cal-day.other-month .cal-day-num{color:var(--text3)}
+
+  /* Legend */
+  .legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 0 4px}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
+  .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .legend-ring{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--green);flex-shrink:0}
+  .legend-dash{width:14px;height:14px;border-radius:50%;border:1.5px dashed var(--rose);flex-shrink:0}
+
+  @media(min-width:480px){
+    .cal-day{width:46px;height:46px}
+    .cal-day-num{font-size:16px}
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="cal-nav">
+    <a href="?m={{ prev_month }}&y={{ prev_year }}" class="cal-arrow" aria-label="Previous month">‹</a>
+    <div>
+      <div class="cal-nav-title">{{ month_name }} {{ year }}</div>
+    </div>
+    <a href="?m={{ next_month }}&y={{ next_year }}" class="cal-arrow" aria-label="Next month">›</a>
+  </div>
+
+  <table class="cal-grid" role="grid" aria-label="{{ month_name }} {{ year }} calendar">
+    <thead class="cal-head">
+      <tr>
+        <th scope="col">Sun</th>
+        <th scope="col">Mon</th>
+        <th scope="col">Tue</th>
+        <th scope="col">Wed</th>
+        <th scope="col">Thu</th>
+        <th scope="col">Fri</th>
+        <th scope="col">Sat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in calendar_weeks %}
+      <tr>
+        {% for day_num in week %}
+        <td class="cal-cell">
+          {% if day_num == 0 %}
+            <div class="cal-day other-month"><span class="cal-day-num"></span></div>
+          {% else %}
+            {% with d=days_dict|get_item:day_num %}
+            {% if d %}
+              <a href="{% url 'day_detail' d.pk %}"
+                class="cal-day
+                  {% if d.date == today %}today{% endif %}
+                  {% if d.flow_level != 'none' %}has-flow{% endif %}
+                  {% if d.fertile %}is-fertile{% endif %}
+                  {% if d.spotting %}is-spotting{% endif %}
+                  {% if d.prediction %}is-prediction{% endif %}"
+                aria-label="{{ d.date|date:'F j' }}{% if d.flow_level != 'none' %}, {{ d.flow_level }} flow{% endif %}{% if d.fertile %}, fertile{% endif %}">
+                <span class="cal-day-num">{{ day_num }}</span>
+                <div class="cal-dots">
+                  {% if d.flow_level != 'none' %}
+                    <span class="cal-dot" style="background:var(--rose)"></span>
+                  {% endif %}
+                  {% if d.fertile %}
+                    <span class="cal-dot" style="background:var(--green)"></span>
+                  {% endif %}
+                  {% if d.phase %}
+                    <span class="cal-dot dot-{{ d.phase.name }}"></span>
+                  {% endif %}
+                </div>
+              </a>
+            {% else %}
+              <a href="{% url 'day_create' %}?date={{ year }}-{{ month|stringformat:'02d' }}-{{ day_num|stringformat:'02d' }}"
+                class="cal-day {% if today.day == day_num and today.month == month and today.year == year %}today{% endif %}"
+                aria-label="{{ month_name }} {{ day_num }}">
+                <span class="cal-day-num">{{ day_num }}</span>
+              </a>
+            {% endif %}
+            {% endwith %}
+          {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--rose)"></span> Period</div>
+    <div class="legend-item"><span class="legend-ring"></span> Fertile</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span> Spotting</div>
+    <div class="legend-item"><span class="legend-dash"></span> Predicted</div>
+    <div class="legend-item"><span style="width:14px;height:14px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px #fff"></span> Today</div>
+  </div>
+
+  {# Phase colour key #}
+  <div class="section-hd">
+    <span class="section-title">This month</span>
+  </div>
+  <div class="card" style="overflow:hidden">
+    {% for d in days %}
+    {% if not d.prediction %}
+    <a href="{% url 'day_detail' d.pk %}" class="list-row">
+      <div class="row-icon
+        {% if d.flow_level != 'none' %}bg-menstrual
+        {% elif d.fertile %}bg-follicular
+        {% else %}{% endif %}"
+        style="font-size:15px;font-weight:700;
+          {% if d.flow_level != 'none' %}background:var(--rose-soft){% elif d.fertile %}background:var(--green-soft){% else %}background:var(--surface2){% endif %}">
+        {{ d.date|date:"j" }}
+      </div>
+      <div class="row-body">
+        <div class="row-title">
+          {{ d.date|date:"l" }}
+          {% if d.flow_level != 'none' %}
+            · <span style="color:var(--rose);text-transform:capitalize">{{ d.flow_level }}</span>
+          {% endif %}
+          {% if d.spotting %}· <span style="color:var(--amber)">spotting</span>{% endif %}
+          {% if d.fertile %}· <span style="color:var(--green)">fertile</span>{% endif %}
+        </div>
+        {% if d.phase %}
+        <div class="row-sub c-{{ d.phase.name }}" style="text-transform:capitalize">{{ d.phase.name }} phase</div>
+        {% endif %}
+      </div>
+      <span class="row-arrow">›</span>
+    </a>
+    {% endif %}
+    {% empty %}
+    <div class="card-pad">
+      <div style="text-align:center;padding:20px 0;color:var(--text2);font-size:14px">
+        No entries this month
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="height:8px"></div>
+</div>
+{% endblock %}

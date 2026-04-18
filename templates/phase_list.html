@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Luna — Phases{% endblock %}
+{% block page_title %}Phases{% endblock %}
+{% block snav_phases %}active{% endblock %}
+
+{% block extra_head %}
+<style>
+  .phase-card{border-radius:var(--r-lg);padding:22px;margin-bottom:14px;
+    border:1px solid var(--border2);cursor:pointer;text-decoration:none;
+    color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+  .phase-card:active{transform:scale(.99)}
+  .phase-card-menstrual{background:linear-gradient(135deg,rgba(255,55,95,.15),rgba(255,55,95,.04))}
+  .phase-card-follicular{background:linear-gradient(135deg,rgba(100,210,255,.15),rgba(100,210,255,.04))}
+  .phase-card-ovulation{background:linear-gradient(135deg,rgba(191,90,242,.15),rgba(191,90,242,.04))}
+  .phase-card-luteal{background:linear-gradient(135deg,rgba(255,159,10,.15),rgba(255,159,10,.04))}
+  .phase-days{font-size:13px;font-weight:600;letter-spacing:.2px}
+  .hormone-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-header-title">Cycle Phases</h1>
+  </div>
+
+  <div style="padding:4px 0 4px">
+    <p style="font-size:14px;color:var(--text2);line-height:1.55">
+      The menstrual cycle has four distinct phases, each driven by shifting hormones
+      that affect energy, mood, and symptoms.
+    </p>
+  </div>
+
+  {# Cycle timeline strip #}
+  <div class="card card-pad mt-12" style="overflow:hidden">
+    <div style="font-size:12px;font-weight:600;color:var(--text3);
+      text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">28-day reference</div>
+    <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;gap:2px">
+      <div style="flex:7;background:var(--rose);border-radius:3px 0 0 3px" title="Menstrual"></div>
+      <div style="flex:6;background:var(--blue)" title="Follicular"></div>
+      <div style="flex:7;background:var(--purple)" title="Ovulation"></div>
+      <div style="flex:14;background:var(--amber);border-radius:0 3px 3px 0" title="Luteal"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--text3)">
+      <span>Day 1</span><span>Day 7</span><span>Day 13</span><span>Day 17</span><span>Day 28</span>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">
+      {% for phase in phases %}
+      <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)">
+        <span class="dot dot-{{ phase.name }}" style="width:7px;height:7px"></span>
+        <span style="text-transform:capitalize">{{ phase.name }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div style="margin-top:20px">
+    {% for phase in phases %}
+    <a href="{% url 'phase_detail' phase.pk %}" class="phase-card phase-card-{{ phase.name }}">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span class="dot dot-{{ phase.name }}" style="width:10px;height:10px"></span>
+            <span class="fw-8 c-{{ phase.name }}" style="font-size:20px;font-weight:800;
+              text-transform:capitalize;letter-spacing:-.3px">{{ phase.name }}</span>
+            <span class="phase-days c-{{ phase.name }}" style="opacity:.7">
+              Days {{ phase.typical_start_day }}–{{ phase.typical_end_day }}
+            </span>
+          </div>
+          <p style="font-size:14px;color:var(--text2);line-height:1.55">
+            {{ phase.description|truncatechars:130 }}
+          </p>
+        </div>
+        <span class="row-arrow" style="margin-top:4px">›</span>
+      </div>
+      {% if phase.dominant_hormones %}
+      <div class="hormone-row">
+        {% for h in phase.dominant_hormones %}
+        <span class="pill pill-gray" style="font-size:11px">{{ h }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </a>
+    {% empty %}
+    <div class="empty">
+      <span class="empty-icon">🔬</span>
+      <div class="empty-title">No phases yet</div>
+      <div class="empty-sub">Load fixtures to populate phase data.</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

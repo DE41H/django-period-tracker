@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Luna — Sign in{% endblock %}
+
+{% block extra_head %}
+<style>
+  body{background:linear-gradient(160deg,#0d0005 0%,#000 60%)}
+  .auth-wrap{min-height:100dvh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:24px 20px;max-width:420px;margin:0 auto}
+  .auth-logo{font-size:48px;font-weight:900;letter-spacing:-2px;margin-bottom:6px;
+    background:linear-gradient(135deg,var(--rose),var(--purple));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .auth-tagline{font-size:14px;color:var(--text2);margin-bottom:36px;text-align:center}
+  .auth-card{width:100%;background:rgba(28,28,30,.8);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border:1px solid var(--border2);border-radius:var(--r-xl);padding:28px 24px}
+  .divider-text{display:flex;align-items:center;gap:10px;
+    color:var(--text3);font-size:12px;margin:20px 0}
+  .divider-text::before,.divider-text::after{
+    content:'';flex:1;height:1px;background:var(--border)}
+</style>
+{% endblock %}
+
+{% block topbar %}{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-logo">Luna</div>
+  <div class="auth-tagline">Track your cycle with clarity</div>
+
+  <div class="auth-card">
+    <h1 style="font-size:22px;font-weight:700;margin-bottom:20px;letter-spacing:-.4px">Sign in</h1>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+      <div class="msg msg-error" style="margin-bottom:16px">
+        {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="form-group">
+        <label class="form-label" for="id_username">Email</label>
+        <input type="email" name="username" id="id_username" autocomplete="email"
+          class="form-control {% if form.username.errors %}form-control-error{% endif %}"
+          placeholder="you@example.com" autofocus>
+        {% for err in form.username.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="id_password">Password</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password"
+          class="form-control" placeholder="••••••••">
+        {% for err in form.password.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">
+        Sign in
+      </button>
+    </form>
+
+    <div class="divider-text">or</div>
+
+    <a href="{% url 'register' %}" class="btn btn-secondary btn-full">
+      Create account
+    </a>
+  </div>
+
+  <p style="font-size:13px;color:var(--text3);margin-top:20px;text-align:center">
+    Your health data stays on your device.<br>We never sell your information.
+  </p>
+</div>
+{% endblock %}

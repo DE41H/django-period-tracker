@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Luna — Profile{% endblock %}
+{% block page_title %}Profile{% endblock %}
+{% block snav_settings %}active{% endblock %}
+{% block bnav_settings %}active{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-header-title">Profile</h1>
+  </div>
+
+  {# Account info strip #}
+  <div class="card card-pad mt-12" style="display:flex;align-items:center;gap:14px">
+    <div style="width:56px;height:56px;border-radius:50%;
+      background:linear-gradient(135deg,var(--rose),var(--purple));
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;font-weight:800;flex-shrink:0">
+      {{ user.email|first|upper }}
+    </div>
+    <div>
+      <div class="fw-6" style="font-size:15px">{{ user.email }}</div>
+      {% if user.date_of_birth %}
+      <div class="text-sm text2 mt-4">Born {{ user.date_of_birth|date:"M j, Y" }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <form method="post" novalidate style="margin-top:20px">
+    {% csrf_token %}
+
+    <div class="form-section-title">Account details</div>
+    <div class="card" style="overflow:hidden;margin-bottom:20px">
+      <div style="padding:16px 18px;border-bottom:1px solid var(--border)">
+        <div class="form-label">Email</div>
+        <input type="email" name="email" value="{{ form.email.value|default:user.email }}"
+          class="form-control" autocomplete="email">
+        {% for err in form.email.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+      <div style="padding:16px 18px">
+        <div class="form-label">Date of birth</div>
+        <input type="date" name="date_of_birth"
+          value="{{ form.date_of_birth.value|date:'Y-m-d'|default:'' }}"
+          class="form-control">
+        {% for err in form.date_of_birth.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-section-title">Health profile</div>
+    <div class="card" style="overflow:hidden;margin-bottom:20px">
+      <div class="toggle-row">
+        <div class="toggle-body">
+          <div class="toggle-title">Hormonal contraception</div>
+          <div class="toggle-sub">Affects phase and fertile window predictions</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" name="uses_hormonal_contraception"
+            {% if form.uses_hormonal_contraception.value %}checked{% endif %}>
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-body">
+          <div class="toggle-title">Trying to conceive</div>
+          <div class="toggle-sub">Highlights fertile window more prominently</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" name="is_trying_to_conceive"
+            {% if form.is_trying_to_conceive.value %}checked{% endif %}>
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="form-error" style="margin-bottom:12px">
+      {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary btn-full">Save Changes</button>
+  </form>
+
+  {# Cycle stats #}
+  <div class="section-hd mt-12">
+    <span class="section-title">Cycle estimate</span>
+  </div>
+  <div class="card card-pad" style="display:flex;align-items:center;gap:14px">
+    <div style="text-align:center;min-width:56px">
+      <div style="font-size:36px;font-weight:800;letter-spacing:-1.5px;
+        background:linear-gradient(135deg,var(--rose),var(--purple));
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+        {{ user.kalman_estimate|floatformat:0 }}
+      </div>
+      <div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.3px">days</div>
+    </div>
+    <div>
+      <div class="fw-6" style="font-size:15px">Personalised estimate</div>
+      <div class="text-sm text2 mt-4">
+        Kalman-filtered from your logged cycles.
+        Accuracy improves with more data.
+      </div>
+      <div class="text-sm text2 mt-4">
+        Confidence: ±{{ user.kalman_error|floatformat:1 }} days
+      </div>
+    </div>
+  </div>
+
+  {# Auth actions #}
+  <div class="section-hd mt-12"><span class="section-title">Account</span></div>
+  <div class="card" style="overflow:hidden">
+    <a href="{% url 'logout' %}" class="list-row" style="color:#ff453a">
+      <div class="row-icon" style="background:rgba(255,69,58,.12);font-size:18px">🚪</div>
+      <div class="row-body"><div class="row-title" style="color:#ff453a">Sign out</div></div>
+    </a>
+  </div>
+
+  <div style="height:24px"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+{% block title %}Luna — Today{% endblock %}
+{% block page_title %}Today{% endblock %}
+{% block snav_home %}active{% endblock %}
+{% block bnav_home %}active{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* Cycle ring */
+  .ring-wrap{display:flex;flex-direction:column;align-items:center;padding:28px 0 20px;
+    background:linear-gradient(180deg,rgba(255,55,95,.06) 0%,transparent 100%)}
+  .ring-svg{transform:rotate(-90deg)}
+  .ring-track{fill:none;stroke:var(--surface2);stroke-width:8}
+  .ring-fill{fill:none;stroke-width:8;stroke-linecap:round;
+    transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1)}
+  .ring-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    text-align:center;pointer-events:none}
+  .ring-container{position:relative;width:160px;height:160px}
+  .ring-day{font-size:42px;font-weight:800;letter-spacing:-2px;line-height:1}
+  .ring-of{font-size:14px;color:var(--text2);margin-top:2px}
+  .ring-sub{font-size:14px;color:var(--text2);margin-top:10px;text-align:center}
+
+  /* Stat grid */
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat-card{background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--r);padding:16px}
+  .stat-card-val{font-size:34px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+  .stat-card-unit{font-size:14px;font-weight:500;color:var(--text2);margin-left:3px}
+  .stat-card-lbl{font-size:12px;color:var(--text2);margin-top:5px;font-weight:500}
+  .stat-card-sub{font-size:11px;color:var(--text3);margin-top:2px}
+
+  /* Today banner */
+  .today-banner{border-radius:var(--r);padding:16px 18px;
+    background:var(--surface);border:1px solid var(--border);
+    display:flex;align-items:center;gap:14px}
+  .today-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+
+  /* Recent days */
+  .day-row{display:flex;align-items:center;gap:12px;padding:12px 18px;
+    border-bottom:1px solid var(--border);text-decoration:none;color:inherit}
+  .day-row:last-child{border-bottom:none}
+  .day-row:active{background:var(--surface2)}
+  .day-date-col{width:44px;flex-shrink:0;text-align:center}
+  .day-date-num{font-size:20px;font-weight:700;line-height:1}
+  .day-date-mon{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px}
+  .day-dots{display:flex;gap:4px;align-items:center;margin-top:5px;justify-content:center}
+  .flow-dot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+  .fertile-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+  /* Phase banner */
+  .phase-banner{border-radius:var(--r);padding:14px 16px;
+    display:flex;align-items:center;gap:12px}
+
+  @media(min-width:768px){
+    .stat-grid{grid-template-columns:repeat(4,1fr)}
+    .ring-wrap{border-radius:var(--r) var(--r) 0 0}
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  {# ── Cycle Ring ── #}
+  <div class="ring-wrap mt-20">
+    <div class="ring-container" aria-label="Cycle progress">
+      {% if cycle_day and cycle_length %}
+        {% with pct=cycle_day|floatformat:0 %}
+        <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160">
+          <circle class="ring-track" cx="80" cy="80" r="68"/>
+          {# stroke-dasharray = circumference = 2π×68 ≈ 427.3 #}
+          <circle class="ring-fill"
+            cx="80" cy="80" r="68"
+            stroke="url(#ringGrad)"
+            stroke-dasharray="427.3"
+            style="stroke-dashoffset:{{ cycle_day|floatformat:0 }}"/>
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--rose)"/>
+              <stop offset="100%" stop-color="var(--purple)"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        {% endwith %}
+      {% else %}
+        <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160">
+          <circle class="ring-track" cx="80" cy="80" r="68"/>
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--rose)"/>
+              <stop offset="100%" stop-color="var(--purple)"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      {% endif %}
+      <div class="ring-label">
+        {% if cycle_day %}
+          <div class="ring-day gradient-text">{{ cycle_day }}</div>
+          <div class="ring-of">of {{ cycle_length }} days</div>
+        {% else %}
+          <div style="font-size:36px">🌙</div>
+          <div class="ring-of">log to start</div>
+        {% endif %}
+      </div>
+    </div>
+    {% if current_phase %}
+      <div class="ring-sub" style="display:flex;align-items:center;gap:6px">
+        <span class="dot dot-{{ current_phase.name }}"></span>
+        <span style="text-transform:capitalize">{{ current_phase.name }} phase</span>
+      </div>
+    {% elif cycle_day %}
+      <div class="ring-sub text2">Cycle day {{ cycle_day }}</div>
+    {% else %}
+      <div class="ring-sub text2">No cycle data yet</div>
+    {% endif %}
+  </div>
+
+  {# ── Stat grid ── #}
+  <div class="stat-grid mt-12">
+    <div class="stat-card">
+      {% if days_until_period is not None %}
+        <div class="stat-card-val" style="color:var(--rose)">{{ days_until_period }}</div>
+        <div class="stat-card-lbl">Days to period</div>
+        {% if next_period %}
+          <div class="stat-card-sub">{{ next_period.date|date:"M j" }}</div>
+        {% endif %}
+      {% else %}
+        <div class="stat-card-val text3">—</div>
+        <div class="stat-card-lbl">Days to period</div>
+        <div class="stat-card-sub">Log a period to predict</div>
+      {% endif %}
+    </div>
+
+    <div class="stat-card">
+      {% if next_fertile %}
+        <div class="stat-card-val" style="color:var(--green)">
+          {{ next_fertile.date|date:"M j" }}
+        </div>
+        <div class="stat-card-lbl">Fertile window</div>
+        {% if next_fertile_end %}
+          <div class="stat-card-sub">ends {{ next_fertile_end.date|date:"M j" }}</div>
+        {% endif %}
+      {% else %}
+        <div class="stat-card-val text3">—</div>
+        <div class="stat-card-lbl">Fertile window</div>
+        <div class="stat-card-sub">Needs more data</div>
+      {% endif %}
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card-val" style="color:var(--purple)">
+        {{ kalman_estimate|floatformat:0 }}
+        <span class="stat-card-unit">d</span>
+      </div>
+      <div class="stat-card-lbl">Avg cycle length</div>
+      <div class="stat-card-sub">Kalman estimate</div>
+    </div>
+
+    <div class="stat-card">
+      {% if cycle_day %}
+        <div class="stat-card-val" style="color:var(--amber)">{{ cycle_day }}</div>
+        <div class="stat-card-lbl">Cycle day</div>
+        {% if last_period %}
+          <div class="stat-card-sub">since {{ last_period.date|date:"M j" }}</div>
+        {% endif %}
+      {% else %}
+        <div class="stat-card-val text3">—</div>
+        <div class="stat-card-lbl">Cycle day</div>
+        <div class="stat-card-sub">No data yet</div>
+      {% endif %}
+    </div>
+  </div>
+
+  {# ── Contraception / TTC notice ── #}
+  {% if request.user.uses_hormonal_contraception %}
+  <div class="mt-12 card card-pad" style="background:var(--purple-soft);border-color:rgba(191,90,242,.3)">
+    <div style="display:flex;gap:10px;align-items:flex-start">
+      <span style="font-size:18px">💊</span>
+      <div>
+        <div class="fw-6" style="color:var(--purple);font-size:14px">Hormonal contraception active</div>
+        <div class="text-sm text2 mt-4">Fertile window and phase predictions may not reflect your cycle.</div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if request.user.is_trying_to_conceive %}
+  <div class="mt-12 card card-pad" style="background:var(--green-soft);border-color:rgba(48,209,88,.3)">
+    <div style="display:flex;gap:10px;align-items:flex-start">
+      <span style="font-size:18px">🌱</span>
+      <div>
+        <div class="fw-6" style="color:var(--green);font-size:14px">Trying to conceive</div>
+        <div class="text-sm text2 mt-4">
+          {% if next_fertile %}
+            Next fertile window: <strong style="color:var(--green)">{{ next_fertile.date|date:"M j" }}</strong>
+            {% if next_fertile_end %} — {{ next_fertile_end.date|date:"M j" }}{% endif %}
+          {% else %}
+            Log more cycles for accurate fertile window predictions.
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {# ── Today's entry ── #}
+  <div class="section-hd">
+    <span class="section-title">Today</span>
+    {% if today_day %}
+      <a href="{% url 'day_update' today_day.pk %}" class="section-link">Edit</a>
+    {% else %}
+      <a href="{% url 'day_create' %}" class="section-link">+ Log</a>
+    {% endif %}
+  </div>
+
+  {% if today_day %}
+  <a href="{% url 'day_detail' today_day.pk %}" class="today-banner" style="text-decoration:none;color:inherit">
+    <div class="today-dot
+      {% if today_day.flow_level != 'none' %}dot-menstrual
+      {% elif today_day.fertile %}bg-green
+      {% else %}dot-follicular{% endif %}
+      " style="background:{% if today_day.flow_level != 'none' %}var(--rose){% elif today_day.fertile %}var(--green){% else %}var(--blue){% endif %}"></div>
+    <div style="flex:1;min-width:0">
+      <div class="fw-5" style="font-size:15px">
+        {% if today_day.flow_level != 'none' %}
+          Flow: <span style="color:var(--rose);text-transform:capitalize">{{ today_day.flow_level }}</span>
+        {% else %}
+          No flow logged
+        {% endif %}
+        {% if today_day.spotting %}· <span style="color:var(--amber)">spotting</span>{% endif %}
+        {% if today_day.fertile %}· <span style="color:var(--green)">fertile</span>{% endif %}
+      </div>
+      {% if today_day.phase %}
+        <div class="text-sm text2 mt-4" style="text-transform:capitalize">
+          {{ today_day.phase.name }} phase
+        </div>
+      {% endif %}
+      {% if today_day.symptoms.all %}
+        <div class="text-sm text2 mt-4">
+          {{ today_day.symptoms.all|join:", " }}
+        </div>
+      {% endif %}
+    </div>
+    <span class="row-arrow">›</span>
+  </a>
+  {% else %}
+  <a href="{% url 'day_create' %}" style="text-decoration:none">
+    <div class="today-banner" style="border-style:dashed;opacity:.7">
+      <span style="font-size:24px">✏️</span>
+      <div>
+        <div class="fw-5" style="font-size:15px">Log today</div>
+        <div class="text-sm text2 mt-4">Track flow, symptoms and notes</div>
+      </div>
+      <span class="row-arrow" style="color:var(--rose)">›</span>
+    </div>
+  </a>
+  {% endif %}
+
+  {# ── Recent days ── #}
+  {% if recent_days %}
+  <div class="section-hd">
+    <span class="section-title">Recent</span>
+    <a href="{% url 'calendar' %}" class="section-link">Calendar</a>
+  </div>
+  <div class="card stack" style="overflow:hidden">
+    {% for d in recent_days %}
+    <a href="{% url 'day_detail' d.pk %}" class="day-row">
+      <div class="day-date-col">
+        <div class="day-date-num">{{ d.date|date:"j" }}</div>
+        <div class="day-date-mon">{{ d.date|date:"M" }}</div>
+        <div class="day-dots">
+          {% if d.flow_level != 'none' %}<span class="flow-dot"></span>{% endif %}
+          {% if d.fertile %}<span class="fertile-dot"></span>{% endif %}
+          {% if d.spotting %}<span class="dot" style="background:var(--amber)"></span>{% endif %}
+        </div>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div class="fw-5" style="font-size:14px">
+          {% if d.flow_level != 'none' %}
+            <span style="color:var(--rose);text-transform:capitalize">{{ d.flow_level }} flow</span>
+          {% else %}
+            <span class="text2">No flow</span>
+          {% endif %}
+          {% if d.phase %}· <span style="text-transform:capitalize;color:var(--text2)">{{ d.phase.name }}</span>{% endif %}
+        </div>
+        {% if d.symptoms.all %}
+          <div class="text-sm text2 mt-4">{{ d.symptoms.all|join:", " }}</div>
+        {% endif %}
+        {% if d.notes %}
+          <div class="text-sm text2 mt-4" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+            {{ d.notes|truncatechars:60 }}
+          </div>
+        {% endif %}
+      </div>
+      <span class="row-arrow">›</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty mt-20">
+    <span class="empty-icon">🌸</span>
+    <div class="empty-title">Start tracking</div>
+    <div class="empty-sub">Log your first day to see insights and predictions here.</div>
+    <a href="{% url 'day_create' %}" class="btn btn-primary">Log a day</a>
+  </div>
+  {% endif %}
+
+  {# ── Current phase info ── #}
+  {% if current_phase %}
+  <div class="section-hd">
+    <span class="section-title">Current phase</span>
+    <a href="{% url 'phase_detail' current_phase.pk %}" class="section-link">Details</a>
+  </div>
+  <div class="card card-pad bg-{{ current_phase.name }}" style="border-color:rgba(255,255,255,.1)">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span class="dot dot-{{ current_phase.name }}" style="width:10px;height:10px"></span>
+      <span class="fw-7 c-{{ current_phase.name }}" style="text-transform:capitalize;font-size:17px">
+        {{ current_phase.name }}
+      </span>
+      <span class="text-sm text2">days {{ current_phase.typical_start_day }}–{{ current_phase.typical_end_day }}</span>
+    </div>
+    <p class="text-sm text2">{{ current_phase.description }}</p>
+    {% if current_phase.dominant_hormones %}
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+      {% for h in current_phase.dominant_hormones %}
+      <span class="pill pill-gray" style="font-size:11px">{{ h }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div style="height:8px"></div>
+</div>
+
+<script>
+  // Animate the ring on load
+  (function(){
+    const fill = document.querySelector('.ring-fill');
+    if(!fill) return;
+    const total = 427.3;
+    {% if cycle_day and cycle_length %}
+    const pct = {{ cycle_day }} / {{ cycle_length }};
+    const offset = total * (1 - Math.min(pct, 1));
+    {% else %}
+    const offset = total;
+    {% endif %}
+    fill.style.strokeDashoffset = total;
+    requestAnimationFrame(()=>{
+      setTimeout(()=>{ fill.style.strokeDashoffset = offset; }, 100);
+    });
+  })();
+</script>
+{% endblock %}

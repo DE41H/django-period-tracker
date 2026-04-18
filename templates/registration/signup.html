@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Luna — Create account{% endblock %}
+
+{% block extra_head %}
+<style>
+  body{background:linear-gradient(160deg,#0d0005 0%,#000 60%)}
+  .auth-wrap{min-height:100dvh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:24px 20px;max-width:440px;margin:0 auto}
+  .auth-logo{font-size:42px;font-weight:900;letter-spacing:-2px;margin-bottom:6px;
+    background:linear-gradient(135deg,var(--rose),var(--purple));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .auth-tagline{font-size:14px;color:var(--text2);margin-bottom:28px;text-align:center}
+  .auth-card{width:100%;background:rgba(28,28,30,.8);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border:1px solid var(--border2);border-radius:var(--r-xl);padding:28px 24px}
+</style>
+{% endblock %}
+
+{% block topbar %}{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-logo">Luna</div>
+  <div class="auth-tagline">Track your cycle with clarity</div>
+
+  <div class="auth-card">
+    <h1 style="font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-.4px">Create account</h1>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:20px">
+      Your data is private and stored securely.
+    </p>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" name="email"
+          value="{{ form.email.value|default:'' }}"
+          class="form-control" placeholder="you@example.com"
+          autocomplete="email" autofocus>
+        {% for err in form.email.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Date of birth</label>
+        <input type="date" name="date_of_birth"
+          value="{{ form.date_of_birth.value|default:'' }}"
+          class="form-control">
+        {% for err in form.date_of_birth.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" name="password1" class="form-control"
+          placeholder="At least 8 characters" autocomplete="new-password">
+        {% for err in form.password1.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Confirm password</label>
+        <input type="password" name="password2" class="form-control"
+          placeholder="Repeat password" autocomplete="new-password">
+        {% for err in form.password2.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+
+      {# Health profile #}
+      <div style="background:var(--surface);border-radius:var(--r);
+        border:1px solid var(--border);overflow:hidden;margin:16px 0">
+        <div style="padding:12px 16px;border-bottom:1px solid var(--border);
+          font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">
+          Health profile (optional)
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-body">
+            <div class="toggle-title">Hormonal contraception</div>
+            <div class="toggle-sub">Adjusts predictions accordingly</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" name="uses_hormonal_contraception"
+              {% if form.uses_hormonal_contraception.value %}checked{% endif %}>
+            <span class="toggle-track"></span>
+            <span class="toggle-thumb"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-body">
+            <div class="toggle-title">Trying to conceive</div>
+            <div class="toggle-sub">Highlights fertile window</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" name="is_trying_to_conceive"
+              {% if form.is_trying_to_conceive.value %}checked{% endif %}>
+            <span class="toggle-track"></span>
+            <span class="toggle-thumb"></span>
+          </label>
+        </div>
+      </div>
+
+      {% if form.non_field_errors %}
+      <div class="msg msg-error" style="margin-bottom:12px">
+        {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary btn-full">Create account</button>
+    </form>
+
+    <div style="text-align:center;margin-top:16px;font-size:14px;color:var(--text2)">
+      Already have an account?
+      <a href="{% url 'login' %}" style="color:var(--rose);text-decoration:none;font-weight:500">Sign in</a>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:var(--text3);margin-top:20px;text-align:center;line-height:1.55">
+    By creating an account you agree to keep your data safe.<br>
+    We store all data locally — no third parties.
+  </p>
+</div>
+{% endblock %}

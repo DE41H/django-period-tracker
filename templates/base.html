@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>{% block title %}Luna{% endblock %}</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#000;--bg2:#0d0d0d;
+      --surface:#1c1c1e;--surface2:#2c2c2e;--surface3:#3a3a3c;
+      --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.13);
+      --rose:#ff375f;--rose-soft:rgba(255,55,95,.15);
+      --purple:#bf5af2;--purple-soft:rgba(191,90,242,.15);
+      --blue:#64d2ff;--blue-soft:rgba(100,210,255,.15);
+      --amber:#ff9f0a;--amber-soft:rgba(255,159,10,.15);
+      --green:#30d158;--green-soft:rgba(48,209,88,.15);
+      --text:#fff;--text2:rgba(235,235,245,.6);--text3:rgba(235,235,245,.28);
+      --r:16px;--r-sm:10px;--r-lg:22px;--r-xl:28px;
+      --nav-h:76px;--safe-b:env(safe-area-inset-bottom,0px);
+      --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);
+      min-height:100dvh;padding-bottom:calc(var(--nav-h) + var(--safe-b));
+      -webkit-font-smoothing:antialiased;line-height:1.4}
+
+    /* ── Top bar ── */
+    .topbar{position:sticky;top:0;z-index:100;
+      background:rgba(0,0,0,.75);backdrop-filter:blur(20px) saturate(180%);
+      -webkit-backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid var(--border);
+      padding:env(safe-area-inset-top,0) 0 0;
+      display:flex;align-items:center;justify-content:space-between;
+      min-height:52px;gap:8px}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;
+      width:100%;padding:0 18px;height:52px;gap:8px}
+    .topbar-logo{font-size:22px;font-weight:800;
+      background:linear-gradient(135deg,var(--rose),var(--purple));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;letter-spacing:-.5px;text-decoration:none}
+    .topbar-title{font-size:17px;font-weight:600;letter-spacing:-.3px;
+      position:absolute;left:50%;transform:translateX(-50%)}
+    .topbar-back{display:flex;align-items:center;gap:3px;color:var(--rose);
+      font-size:15px;font-weight:500;text-decoration:none}
+    .topbar-action{color:var(--rose);font-size:15px;font-weight:500;
+      text-decoration:none;white-space:nowrap}
+
+    /* ── Layout ── */
+    .main{padding-bottom:16px}
+    .container{max-width:680px;margin:0 auto;padding:0 16px}
+    .page-pad{padding:20px 16px}
+
+    /* ── Bottom nav ── */
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;
+      background:rgba(18,18,20,.88);backdrop-filter:blur(24px) saturate(180%);
+      -webkit-backdrop-filter:blur(24px) saturate(180%);
+      border-top:1px solid var(--border);
+      display:flex;justify-content:space-around;align-items:flex-start;
+      padding:8px 0 calc(6px + var(--safe-b));height:calc(var(--nav-h) + var(--safe-b))}
+    .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;
+      text-decoration:none;flex:1;padding:4px 2px;
+      color:var(--text3);transition:color .15s;min-width:44px;position:relative}
+    .nav-item.active{color:var(--rose)}
+    .nav-icon{font-size:23px;line-height:1;transition:transform .15s}
+    .nav-item.active .nav-icon{transform:scale(1.1)}
+    .nav-label{font-size:10px;font-weight:500;letter-spacing:.1px}
+    .nav-add .nav-icon{
+      width:42px;height:42px;background:var(--rose);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;font-style:normal;margin-top:-8px;
+      box-shadow:0 4px 16px rgba(255,55,95,.4)}
+
+    /* ── Cards ── */
+    .card{background:var(--surface);border-radius:var(--r);
+      border:1px solid var(--border);overflow:hidden}
+    .card-glass{background:rgba(28,28,30,.65);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--border2);border-radius:var(--r)}
+    .card-pad{padding:18px}
+    .stack>*+*{margin-top:12px}
+
+    /* ── Section headers ── */
+    .section-hd{display:flex;align-items:center;justify-content:space-between;
+      padding:22px 0 10px}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.4px}
+    .section-link{color:var(--rose);font-size:14px;font-weight:500;text-decoration:none}
+
+    /* ── Pills ── */
+    .pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;
+      border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.2px}
+    .pill-rose{background:var(--rose-soft);color:var(--rose)}
+    .pill-purple{background:var(--purple-soft);color:var(--purple)}
+    .pill-blue{background:var(--blue-soft);color:var(--blue)}
+    .pill-amber{background:var(--amber-soft);color:var(--amber)}
+    .pill-green{background:var(--green-soft);color:var(--green)}
+    .pill-gray{background:rgba(255,255,255,.08);color:var(--text2)}
+
+    /* ── Phase colours ── */
+    .c-menstrual{color:var(--rose)}.c-follicular{color:var(--blue)}
+    .c-ovulation{color:var(--purple)}.c-luteal{color:var(--amber)}
+    .bg-menstrual{background:var(--rose-soft)}.bg-follicular{background:var(--blue-soft)}
+    .bg-ovulation{background:var(--purple-soft)}.bg-luteal{background:var(--amber-soft)}
+    .dot-menstrual{background:var(--rose)}.dot-follicular{background:var(--blue)}
+    .dot-ovulation{background:var(--purple)}.dot-luteal{background:var(--amber)}
+
+    /* ── List rows ── */
+    .list-row{display:flex;align-items:center;gap:14px;
+      padding:13px 18px;border-bottom:1px solid var(--border);
+      text-decoration:none;color:inherit;transition:background .12s}
+    .list-row:last-child{border-bottom:none}
+    .list-row:active{background:var(--surface2)}
+    .row-icon{width:42px;height:42px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .row-body{flex:1;min-width:0}
+    .row-title{font-size:15px;font-weight:500}
+    .row-sub{font-size:13px;color:var(--text2);margin-top:2px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .row-arrow{color:var(--text3);font-size:13px;flex-shrink:0}
+    .row-meta{font-size:13px;color:var(--text2);flex-shrink:0}
+
+    /* ── Buttons ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:14px 24px;border-radius:100px;font-family:var(--font);
+      font-size:15px;font-weight:600;border:none;cursor:pointer;
+      transition:opacity .15s,transform .1s;text-decoration:none;letter-spacing:-.2px}
+    .btn:active{opacity:.8;transform:scale(.98)}
+    .btn-primary{background:var(--rose);color:#fff;box-shadow:0 4px 14px rgba(255,55,95,.35)}
+    .btn-secondary{background:var(--surface2);color:var(--text)}
+    .btn-ghost{background:transparent;color:var(--rose);border:1px solid var(--border2)}
+    .btn-danger{background:rgba(255,69,58,.12);color:#ff453a}
+    .btn-full{width:100%}
+    .btn-sm{padding:10px 18px;font-size:14px}
+
+    /* ── Forms ── */
+    .form-section{margin-bottom:24px}
+    .form-section-title{font-size:13px;font-weight:600;color:var(--text3);
+      text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;padding:0 2px}
+    .form-group{margin-bottom:12px}
+    .form-label{display:block;font-size:13px;font-weight:500;color:var(--text2);
+      margin-bottom:6px}
+    .form-control{width:100%;background:var(--surface2);border:1px solid var(--border2);
+      border-radius:var(--r-sm);color:var(--text);font-family:var(--font);
+      font-size:15px;padding:13px 14px;outline:none;
+      transition:border-color .15s;appearance:none;-webkit-appearance:none}
+    .form-control:focus{border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-soft)}
+    .form-control option{background:var(--surface)}
+    select.form-control{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(235,235,245,.4)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+    textarea.form-control{resize:vertical;min-height:90px}
+    .form-error{color:#ff453a;font-size:12px;margin-top:5px}
+    .form-errors-list{list-style:none;margin-top:4px}
+
+    /* Toggle switch */
+    .toggle-row{display:flex;align-items:center;gap:14px;
+      padding:14px 18px;border-bottom:1px solid var(--border)}
+    .toggle-row:last-child{border-bottom:none}
+    .toggle-body{flex:1}
+    .toggle-title{font-size:15px;font-weight:500}
+    .toggle-sub{font-size:13px;color:var(--text2);margin-top:2px}
+    .toggle{position:relative;display:inline-block;width:51px;height:31px;flex-shrink:0}
+    .toggle input{opacity:0;width:0;height:0;position:absolute}
+    .toggle-track{position:absolute;inset:0;border-radius:16px;
+      background:var(--surface3);cursor:pointer;transition:background .2s}
+    .toggle input:checked+.toggle-track{background:var(--rose)}
+    .toggle-thumb{position:absolute;top:3px;left:3px;width:25px;height:25px;
+      border-radius:13px;background:#fff;transition:transform .2s;
+      box-shadow:0 2px 5px rgba(0,0,0,.35);pointer-events:none}
+    .toggle input:checked~.toggle-thumb{transform:translateX(20px)}
+
+    /* Symptom chips */
+    .chips{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0}
+    .chip{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;
+      border-radius:100px;border:1px solid var(--border2);background:var(--surface2);
+      color:var(--text2);cursor:pointer;font-size:13px;font-weight:500;
+      transition:all .15s;user-select:none}
+    .chip input[type=checkbox]{display:none}
+    .chip:has(input:checked){background:var(--rose-soft);
+      border-color:var(--rose);color:var(--rose)}
+
+    /* Severity */
+    .sev-low{color:var(--green)}.sev-medium{color:var(--amber)}
+    .sev-high{color:var(--rose)}.sev-positive{color:var(--purple)}
+    .sev-neutral{color:var(--blue)}
+
+    /* Misc */
+    .divider{height:1px;background:var(--border);margin:4px 0}
+    .text2{color:var(--text2)}.text3{color:var(--text3)}
+    .text-sm{font-size:13px}.text-xs{font-size:11px}
+    .fw-7{font-weight:700}.fw-6{font-weight:600}.fw-5{font-weight:500}
+    .mt-4{margin-top:4px}.mt-8{margin-top:8px}.mt-12{margin-top:12px}
+    .mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-24{margin-top:24px}
+    .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+    .dot-sm{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+
+    /* Messages */
+    .messages{padding:10px 16px 0}
+    .msg{padding:12px 16px;border-radius:var(--r-sm);font-size:14px;margin-bottom:8px}
+    .msg-success{background:var(--green-soft);color:var(--green)}
+    .msg-error{background:rgba(255,69,58,.12);color:#ff453a}
+    .msg-info{background:var(--blue-soft);color:var(--blue)}
+
+    /* Pagination */
+    .pagination{display:flex;justify-content:center;gap:8px;padding:24px 0;flex-wrap:wrap}
+    .pg-btn{min-width:36px;height:36px;border-radius:100px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:500;text-decoration:none;
+      color:var(--text2);background:var(--surface);border:1px solid var(--border)}
+    .pg-btn.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+    .pg-btn.disabled{opacity:.3;pointer-events:none}
+
+    /* Empty state */
+    .empty{text-align:center;padding:60px 20px}
+    .empty-icon{font-size:52px;margin-bottom:16px;display:block}
+    .empty-title{font-size:20px;font-weight:600;margin-bottom:8px}
+    .empty-sub{font-size:15px;color:var(--text2);margin-bottom:24px}
+
+    /* Gradient hero */
+    .gradient-text{
+      background:linear-gradient(135deg,var(--rose),var(--purple));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text}
+    .gradient-bg{background:linear-gradient(135deg,var(--rose),var(--purple))}
+
+    /* ── Desktop sidebar ── */
+    @media(min-width:768px){
+      .bottom-nav{display:none}
+      body{padding-bottom:0;display:flex;min-height:100vh}
+      .sidebar{
+        width:220px;flex-shrink:0;position:sticky;top:0;height:100vh;
+        padding:28px 12px;border-right:1px solid var(--border);
+        display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+      .sidebar-logo{font-size:24px;font-weight:800;letter-spacing:-.5px;
+        padding:4px 12px 24px;text-decoration:none;
+        background:linear-gradient(135deg,var(--rose),var(--purple));
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        background-clip:text;display:block}
+      .sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 12px;
+        border-radius:var(--r-sm);text-decoration:none;color:var(--text2);
+        font-size:15px;font-weight:500;transition:background .15s,color .15s}
+      .sidebar-item:hover{background:var(--surface);color:var(--text)}
+      .sidebar-item.active{background:var(--rose-soft);color:var(--rose)}
+      .sidebar-item .nav-icon{font-size:18px;width:24px;text-align:center}
+      .page-wrap{flex:1;min-width:0;max-width:760px}
+      .topbar{display:none}
+      .page-header{padding:28px 24px 0;
+        display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+      .page-header-title{font-size:28px;font-weight:800;letter-spacing:-.6px}
+      .page-header-action{color:var(--rose);font-size:15px;font-weight:500;text-decoration:none}
+      .container{padding:0 24px}
+    }
+    @media(max-width:767px){
+      .sidebar{display:none}
+      .page-wrap{width:100%}
+      .page-header{padding:16px 16px 0;
+        display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+      .page-header-title{font-size:24px;font-weight:800;letter-spacing:-.5px}
+      .page-header-action{color:var(--rose);font-size:15px;font-weight:500;text-decoration:none}
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+{% if user.is_authenticated %}
+<aside class="sidebar" role="navigation" aria-label="Main navigation">
+  <a href="{% url 'dashboard' %}" class="sidebar-logo">Luna</a>
+  <a href="{% url 'dashboard' %}" class="sidebar-item {% block snav_home %}{% endblock %}">
+    <span class="nav-icon">🌙</span> Today
+  </a>
+  <a href="{% url 'calendar' %}" class="sidebar-item {% block snav_calendar %}{% endblock %}">
+    <span class="nav-icon">📅</span> Calendar
+  </a>
+  <a href="{% url 'day_create' %}" class="sidebar-item {% block snav_log %}{% endblock %}">
+    <span class="nav-icon">✏️</span> Log Day
+  </a>
+  <a href="{% url 'symptom_list' %}" class="sidebar-item {% block snav_symptoms %}{% endblock %}">
+    <span class="nav-icon">🫀</span> Symptoms
+  </a>
+  <a href="{% url 'phase_list' %}" class="sidebar-item {% block snav_phases %}{% endblock %}">
+    <span class="nav-icon">🔬</span> Phases
+  </a>
+  <a href="{% url 'settings' %}" class="sidebar-item {% block snav_settings %}{% endblock %}" style="margin-top:auto">
+    <span class="nav-icon">👤</span> Profile
+  </a>
+</aside>
+{% endif %}
+
+<div class="page-wrap">
+  <header class="topbar">
+    <div class="topbar-inner">
+      {% block topbar_left %}
+      <a href="{% url 'dashboard' %}" class="topbar-logo">Luna</a>
+      {% endblock %}
+      <span class="topbar-title">{% block page_title %}{% endblock %}</span>
+      <div>{% block topbar_right %}&nbsp;{% endblock %}</div>
+    </div>
+  </header>
+
+  {% if messages %}
+  <div class="messages" role="alert">
+    {% for message in messages %}
+    <div class="msg msg-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+{% if user.is_authenticated %}
+<nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+  <a href="{% url 'dashboard' %}" class="nav-item {% block bnav_home %}{% endblock %}" aria-label="Today">
+    <span class="nav-icon">🌙</span>
+    <span class="nav-label">Today</span>
+  </a>
+  <a href="{% url 'calendar' %}" class="nav-item {% block bnav_calendar %}{% endblock %}" aria-label="Calendar">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">Calendar</span>
+  </a>
+  <a href="{% url 'day_create' %}" class="nav-item nav-add" aria-label="Log day">
+    <i class="nav-icon">＋</i>
+    <span class="nav-label">Log</span>
+  </a>
+  <a href="{% url 'symptom_list' %}" class="nav-item {% block bnav_symptoms %}{% endblock %}" aria-label="Symptoms">
+    <span class="nav-icon">🫀</span>
+    <span class="nav-label">Symptoms</span>
+  </a>
+  <a href="{% url 'settings' %}" class="nav-item {% block bnav_settings %}{% endblock %}" aria-label="Profile">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">Profile</span>
+  </a>
+</nav>
+{% endif %}
+
+</body>
+</html>

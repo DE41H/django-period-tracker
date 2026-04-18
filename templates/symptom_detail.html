@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}Luna — {{ symptom.name|capfirst }}{% endblock %}
+{% block page_title %}{{ symptom.name|capfirst }}{% endblock %}
+
+{% block topbar_left %}
+<a href="{% url 'symptom_list' %}" class="topbar-back">‹ Back</a>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .prob-bar{height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;margin-top:8px}
+  .prob-fill{height:100%;border-radius:4px;
+    background:linear-gradient(90deg,var(--rose),var(--purple))}
+  .tip-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+  .tip-item:last-child{border-bottom:none}
+  .tip-num{width:22px;height:22px;border-radius:50%;background:var(--rose-soft);
+    color:var(--rose);font-size:11px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  {# Hero #}
+  <div style="padding:24px 0 16px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      {% if symptom.phase %}
+      <span class="pill
+        {% if symptom.phase.name == 'menstrual' %}pill-rose
+        {% elif symptom.phase.name == 'follicular' %}pill-blue
+        {% elif symptom.phase.name == 'ovulation' %}pill-purple
+        {% else %}pill-amber{% endif %}"
+        style="text-transform:capitalize">{{ symptom.phase.name }}</span>
+      {% endif %}
+      <span class="pill
+        {% if symptom.severity == 'high' %}pill-rose
+        {% elif symptom.severity == 'medium' %}pill-amber
+        {% elif symptom.severity == 'positive' %}pill-purple
+        {% elif symptom.severity == 'neutral' %}pill-blue
+        {% else %}pill-green{% endif %}"
+        style="text-transform:capitalize">{{ symptom.severity }}</span>
+    </div>
+    <h1 style="font-size:32px;font-weight:800;letter-spacing:-.8px;text-transform:capitalize">
+      {{ symptom.name }}
+    </h1>
+    <p style="font-size:14px;color:var(--text2);margin-top:4px;font-style:italic">
+      {{ symptom.medical_term }}
+    </p>
+  </div>
+
+  {# Description #}
+  <div class="card card-pad">
+    <p style="font-size:15px;line-height:1.65;color:var(--text2)">{{ symptom.description }}</p>
+  </div>
+
+  {# Stats #}
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
+    <div class="card card-pad" style="text-align:center">
+      <div style="font-size:24px;font-weight:800;color:var(--rose)">
+        {% widthratio symptom.probability 1 100 %}%
+      </div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Probability</div>
+    </div>
+    <div class="card card-pad" style="text-align:center">
+      <div style="font-size:24px;font-weight:800;color:var(--purple)">
+        Day {{ symptom.typical_start_day }}
+      </div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Starts</div>
+    </div>
+    <div class="card card-pad" style="text-align:center">
+      <div style="font-size:24px;font-weight:800;color:var(--blue)">
+        Day {{ symptom.typical_end_day }}
+      </div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Ends</div>
+    </div>
+  </div>
+
+  {# Probability bar #}
+  <div class="card card-pad mt-12">
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2)">
+      <span>Likelihood in {{ symptom.phase.name }} phase</span>
+      <span style="font-weight:600;color:var(--text)">{% widthratio symptom.probability 1 100 %}%</span>
+    </div>
+    <div class="prob-bar">
+      <div class="prob-fill" style="width:{% widthratio symptom.probability 1 100 %}%"></div>
+    </div>
+  </div>
+
+  {# Tips #}
+  {% if symptom.tips %}
+  <div class="section-hd"><span class="section-title">Tips & relief</span></div>
+  <div class="card card-pad">
+    {% for tip in symptom.tips %}
+    <div class="tip-item">
+      <span class="tip-num">{{ forloop.counter }}</span>
+      <p style="font-size:14px;line-height:1.55;color:var(--text2)">{{ tip }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {# Phase link #}
+  {% if symptom.phase %}
+  <div class="section-hd"><span class="section-title">Phase</span></div>
+  <a href="{% url 'phase_detail' symptom.phase.pk %}" class="card card-pad" style="text-decoration:none;color:inherit;display:block">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div class="fw-6 c-{{ symptom.phase.name }}" style="text-transform:capitalize;font-size:16px">
+          {{ symptom.phase.name }} phase
+        </div>
+        <div class="text-sm text2 mt-4">Days {{ symptom.phase.typical_start_day }}–{{ symptom.phase.typical_end_day }}</div>
+      </div>
+      <span class="row-arrow">›</span>
+    </div>
+  </a>
+  {% endif %}
+
+  {# Related symptoms #}
+  {% if symptom.related.all %}
+  <div class="section-hd">
+    <span class="section-title">Related</span>
+    <span class="text-sm text2">{{ symptom.related.count }}</span>
+  </div>
+  <div class="card">
+    {% for rel in symptom.related.all %}
+    <a href="{% url 'symptom_detail' rel.pk %}" class="list-row">
+      <div class="row-icon" style="background:var(--surface2);font-size:16px">🫀</div>
+      <div class="row-body">
+        <div class="row-title" style="text-transform:capitalize">{{ rel.name }}</div>
+        <div class="row-sub">{{ rel.medical_term }}</div>
+      </div>
+      <span class="row-arrow">›</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div style="height:16px"></div>
+</div>
+{% endblock %}

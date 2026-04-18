@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block topbar_left %}
+<a href="{% url 'calendar' %}" class="topbar-back">‹ Cancel</a>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .flow-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .flow-opt{display:flex;flex-direction:column;align-items:center;gap:6px;
+    padding:14px 8px;border-radius:var(--r);border:2px solid var(--border);
+    background:var(--surface);cursor:pointer;transition:all .15s;text-align:center}
+  .flow-opt input{display:none}
+  .flow-opt-icon{font-size:22px}
+  .flow-opt-lbl{font-size:12px;font-weight:600;text-transform:capitalize;color:var(--text2)}
+  .flow-opt:has(input:checked){border-color:var(--rose);background:var(--rose-soft)}
+  .flow-opt:has(input:checked) .flow-opt-lbl{color:var(--rose)}
+
+  .chips-scroll{display:flex;flex-wrap:wrap;gap:8px;max-height:220px;
+    overflow-y:auto;padding:4px 0}
+  .chips-scroll::-webkit-scrollbar{width:4px}
+  .chips-scroll::-webkit-scrollbar-track{background:transparent}
+  .chips-scroll::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:2px}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="padding:20px 0 8px">
+    <h1 style="font-size:26px;font-weight:800;letter-spacing:-.6px">{% block form_title %}Log Day{% endblock %}</h1>
+  </div>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {# Date #}
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="{{ form.date.id_for_label }}">Date</label>
+        {{ form.date }}
+        {% for err in form.date.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {# Flow level — custom radio tiles #}
+    <div class="form-section">
+      <div class="form-section-title">Flow level</div>
+      <div class="flow-options">
+        {% for val, label in form.flow_level.field.choices %}
+        <label class="flow-opt">
+          <input type="radio" name="flow_level" value="{{ val }}"
+            {% if form.flow_level.value == val %}checked{% endif %}>
+          <span class="flow-opt-icon">
+            {% if val == 'heavy' %}🔴{% elif val == 'medium' %}🟠{% elif val == 'light' %}🟡{% else %}⚪{% endif %}
+          </span>
+          <span class="flow-opt-lbl">{{ label }}</span>
+        </label>
+        {% endfor %}
+      </div>
+      {% for err in form.flow_level.errors %}
+        <div class="form-error">{{ err }}</div>
+      {% endfor %}
+    </div>
+
+    {# Spotting toggle #}
+    <div class="form-section">
+      <div class="card" style="overflow:hidden">
+        <div class="toggle-row">
+          <div class="toggle-body">
+            <div class="toggle-title">Spotting</div>
+            <div class="toggle-sub">Light bleeding between periods</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" name="spotting" {% if form.spotting.value %}checked{% endif %}>
+            <span class="toggle-track"></span>
+            <span class="toggle-thumb"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    {# Symptoms — custom chips #}
+    <div class="form-section">
+      <div class="form-section-title">Symptoms</div>
+      {% if form.symptoms.field.queryset %}
+        <div class="chips-scroll">
+          {% for sym in form.symptoms.field.queryset %}
+          <label class="chip">
+            <input type="checkbox" name="symptoms" value="{{ sym.pk }}"
+              {% if sym.pk in form.symptoms.value %}checked{% endif %}>
+            {{ sym.name }}
+          </label>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="text-sm text2">No symptoms available. Load fixtures first.</div>
+      {% endif %}
+      {% for err in form.symptoms.errors %}
+        <div class="form-error">{{ err }}</div>
+      {% endfor %}
+    </div>
+
+    {# Notes #}
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="{{ form.notes.id_for_label }}">Notes</label>
+        <textarea name="notes" id="{{ form.notes.id_for_label }}"
+          class="form-control" placeholder="How are you feeling today?"
+          rows="3">{{ form.notes.value|default:'' }}</textarea>
+        {% for err in form.notes.errors %}
+          <div class="form-error">{{ err }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="form-error" style="margin-bottom:12px">
+      {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary btn-full">
+      {% block submit_label %}Save{% endblock %}
+    </button>
+    <div style="height:16px"></div>
+  </form>
+</div>
+{% endblock %}

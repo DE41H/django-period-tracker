@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Luna — Delete Entry{% endblock %}
+{% block page_title %}Delete{% endblock %}
+
+{% block topbar_left %}
+<a href="{% url 'day_detail' day.pk %}" class="topbar-back">‹ Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top:40px;text-align:center">
+  <div style="font-size:52px;margin-bottom:20px">🗑️</div>
+  <h1 style="font-size:24px;font-weight:700;margin-bottom:10px">Delete entry?</h1>
+  <p style="color:var(--text2);font-size:15px;margin-bottom:8px">
+    {{ day.date|date:"l, F j, Y" }}
+  </p>
+  {% if day.flow_level != 'none' %}
+  <p style="color:var(--text2);font-size:14px;margin-bottom:24px">
+    This will also remove any predictions generated from this cycle start.
+  </p>
+  {% else %}
+  <p style="color:var(--text2);font-size:14px;margin-bottom:24px">
+    This action cannot be undone.
+  </p>
+  {% endif %}
+
+  <div class="card card-pad" style="margin-bottom:24px;text-align:left">
+    <div style="display:flex;gap:10px;align-items:center">
+      <div>
+        {% if day.flow_level != 'none' %}
+          <span class="pill pill-rose" style="text-transform:capitalize">{{ day.flow_level }} flow</span>
+        {% endif %}
+        {% if day.fertile %}<span class="pill pill-green">Fertile</span>{% endif %}
+        {% if day.spotting %}<span class="pill pill-amber">Spotting</span>{% endif %}
+      </div>
+    </div>
+    {% if day.phase %}
+    <div class="mt-8 text-sm text2" style="text-transform:capitalize">{{ day.phase.name }} phase</div>
+    {% endif %}
+    {% if day.symptoms.all %}
+    <div class="mt-8 text-sm text2">{{ day.symptoms.all|join:", " }}</div>
+    {% endif %}
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-full" style="margin-bottom:12px">
+      Delete Entry
+    </button>
+  </form>
+  <a href="{% url 'day_detail' day.pk %}" class="btn btn-secondary btn-full">Cancel</a>
+</div>
+{% endblock %}

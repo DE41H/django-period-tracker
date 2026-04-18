@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Luna — Symptoms{% endblock %}
+{% block page_title %}Symptoms{% endblock %}
+{% block snav_symptoms %}active{% endblock %}
+{% block bnav_symptoms %}active{% endblock %}
+
+{% block extra_head %}
+<style>
+  .search-wrap{padding:12px 0 4px;position:sticky;top:52px;z-index:50;
+    background:var(--bg);padding-top:14px;padding-bottom:10px}
+  .search-box{position:relative}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    font-size:16px;pointer-events:none}
+  .search-input{width:100%;background:var(--surface);border:1px solid var(--border2);
+    border-radius:100px;color:var(--text);font-family:var(--font);font-size:15px;
+    padding:12px 14px 12px 42px;outline:none;transition:border-color .15s;
+    appearance:none;-webkit-appearance:none}
+  .search-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-soft)}
+
+  .sev-bar{width:100%;height:3px;border-radius:2px;background:var(--surface3);margin-top:6px;overflow:hidden}
+  .sev-fill{height:100%;border-radius:2px;transition:width .3s}
+  .sev-fill-low{background:var(--green)}
+  .sev-fill-medium{background:var(--amber)}
+  .sev-fill-high{background:var(--rose)}
+  .sev-fill-positive{background:var(--purple)}
+  .sev-fill-neutral{background:var(--blue)}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-header-title">Symptoms</h1>
+    <span class="text2 text-sm">{{ paginator.count }} total</span>
+  </div>
+
+  <div class="search-wrap">
+    <form method="get" role="search">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="search" name="q" value="{{ request.GET.q|default:'' }}"
+          class="search-input" placeholder="Search symptoms…" aria-label="Search symptoms"
+          autocomplete="off">
+      </div>
+    </form>
+  </div>
+
+  {% if request.GET.q %}
+  <div style="padding:4px 0 8px;color:var(--text2);font-size:13px">
+    Results for "<strong style="color:var(--text)">{{ request.GET.q }}</strong>"
+    — <a href="{% url 'symptom_list' %}" style="color:var(--rose);text-decoration:none">clear</a>
+  </div>
+  {% endif %}
+
+  <div class="card stack" style="overflow:hidden">
+    {% for symptom in symptoms %}
+    <a href="{% url 'symptom_detail' symptom.pk %}" class="list-row">
+      <div class="row-icon" style="
+        background:{% if symptom.severity == 'high' %}var(--rose-soft)
+        {% elif symptom.severity == 'medium' %}var(--amber-soft)
+        {% elif symptom.severity == 'positive' %}var(--purple-soft)
+        {% elif symptom.severity == 'neutral' %}var(--blue-soft)
+        {% else %}var(--green-soft){% endif %}">
+        🫀
+      </div>
+      <div class="row-body">
+        <div class="row-title" style="text-transform:capitalize">{{ symptom.name }}</div>
+        <div class="row-sub">{{ symptom.medical_term }} · {{ symptom.phase.name|capfirst }}</div>
+        <div class="sev-bar">
+          <div class="sev-fill sev-fill-{{ symptom.severity }}"
+            style="width:{% widthratio symptom.probability 1 100 %}%"></div>
+        </div>
+      </div>
+      <div style="flex-shrink:0;text-align:right">
+        <span class="pill
+          {% if symptom.severity == 'high' %}pill-rose
+          {% elif symptom.severity == 'medium' %}pill-amber
+          {% elif symptom.severity == 'positive' %}pill-purple
+          {% elif symptom.severity == 'neutral' %}pill-blue
+          {% else %}pill-green{% endif %}"
+          style="font-size:11px;text-transform:capitalize">{{ symptom.severity }}</span>
+      </div>
+    </a>
+    {% empty %}
+    <div class="empty">
+      <span class="empty-icon">🔍</span>
+      <div class="empty-title">No results</div>
+      <div class="empty-sub">Try a different search term</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {# Pagination #}
+  {% if is_paginated %}
+  <div class="pagination" aria-label="Page navigation">
+    {% if page_obj.has_previous %}
+      <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ page_obj.previous_page_number }}"
+        class="pg-btn" aria-label="Previous">‹</a>
+    {% else %}
+      <span class="pg-btn disabled">‹</span>
+    {% endif %}
+
+    {% for num in paginator.page_range %}
+      {% if page_obj.number == num %}
+        <span class="pg-btn active">{{ num }}</span>
+      {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+        <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ num }}" class="pg-btn">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ page_obj.next_page_number }}"
+        class="pg-btn" aria-label="Next">›</a>
+    {% else %}
+      <span class="pg-btn disabled">›</span>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div style="height:8px"></div>
+</div>
+{% endblock %}

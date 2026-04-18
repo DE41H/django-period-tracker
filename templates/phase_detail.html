@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Luna — {{ phase.name|capfirst }} Phase{% endblock %}
+{% block page_title %}{{ phase.name|capfirst }}{% endblock %}
+
+{% block topbar_left %}
+<a href="{% url 'phase_list' %}" class="topbar-back">‹ Phases</a>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  .phase-hero{padding:24px 0 20px}
+  .symptom-prob-row{display:flex;align-items:center;gap:10px;
+    padding:13px 18px;border-bottom:1px solid var(--border)}
+  .symptom-prob-row:last-child{border-bottom:none}
+  .mini-bar{flex:1;height:4px;border-radius:2px;background:var(--surface2);overflow:hidden}
+  .mini-fill{height:100%;border-radius:2px}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="phase-hero">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span class="dot dot-{{ phase.name }}" style="width:14px;height:14px"></span>
+      <h1 style="font-size:36px;font-weight:800;letter-spacing:-.8px;
+        text-transform:capitalize" class="c-{{ phase.name }}">{{ phase.name }}</h1>
+    </div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:14px">
+      Days {{ phase.typical_start_day }} – {{ phase.typical_end_day }} of the cycle
+    </div>
+    <p style="font-size:15px;line-height:1.65;color:var(--text2)">{{ phase.description }}</p>
+  </div>
+
+  {# Hormones #}
+  {% if phase.dominant_hormones %}
+  <div class="section-hd"><span class="section-title">Dominant hormones</span></div>
+  <div class="card card-pad">
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      {% for h in phase.dominant_hormones %}
+      <span class="pill pill-{% if phase.name == 'menstrual' %}rose{% elif phase.name == 'follicular' %}blue{% elif phase.name == 'ovulation' %}purple{% else %}amber{% endif %}">
+        {{ h }}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {# Symptoms with probability #}
+  <div class="section-hd">
+    <span class="section-title">Common symptoms</span>
+    <span class="text-sm text2">{{ phase.symptoms.count }}</span>
+  </div>
+
+  {% if phase.symptoms.all %}
+  <div class="card">
+    {% for s in phase.symptoms.all|dictsortreversed:"probability" %}
+    <a href="{% url 'symptom_detail' s.pk %}" class="symptom-prob-row" style="text-decoration:none;color:inherit">
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--surface2);
+        display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">🫀</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:14px;font-weight:500;text-transform:capitalize">{{ s.name }}</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:2px">
+          Days {{ s.typical_start_day }}–{{ s.typical_end_day }}
+          · <span class="sev-{{ s.severity }}" style="text-transform:capitalize">{{ s.severity }}</span>
+        </div>
+        <div class="mini-bar mt-4">
+          <div class="mini-fill
+            {% if s.severity == 'high' %}sev-high{% elif s.severity == 'positive' %}sev-positive{% else %}sev-medium{% endif %}"
+            style="width:{% widthratio s.probability 1 100 %}%;
+              background:{% if s.severity == 'high' %}var(--rose){% elif s.severity == 'positive' %}var(--purple){% elif s.severity == 'medium' %}var(--amber){% else %}var(--green){% endif %}">
+          </div>
+        </div>
+      </div>
+      <div style="flex-shrink:0;text-align:right;padding-left:8px">
+        <div style="font-size:14px;font-weight:700;color:var(--text)">{% widthratio s.probability 1 100 %}%</div>
+        <div style="font-size:11px;color:var(--text3)">likely</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card card-pad" style="text-align:center;color:var(--text2);font-size:14px">
+    No symptom data for this phase.
+  </div>
+  {% endif %}
+
+  <div style="height:16px"></div>
+</div>
+{% endblock %}
