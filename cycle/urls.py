@@ -1,5 +1,7 @@
 from django.urls import path
 from cycle.views import (
+    DashboardRedirectView,
+    DashboardView,
     SymptomListView,
     SymptomDetailView,
     PhaseListView,
@@ -14,6 +16,8 @@ from cycle.views import (
 )
 
 urlpatterns = [
+    path('', DashboardRedirectView.as_view()),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('symptoms/', SymptomListView.as_view(), name='symptom_list'),
     path('symptoms/<int:pk>/', SymptomDetailView.as_view(), name='symptom_detail'),
     path('phases/', PhaseListView.as_view(), name='phase_list'),

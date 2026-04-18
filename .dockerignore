@@ -1,0 +1,7 @@
+.venv
+.env
+.gitignore
+.git
+.python-version
+README.md
+uv.lock

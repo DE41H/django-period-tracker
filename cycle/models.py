@@ -21,7 +21,7 @@ class User(AbstractUser):
     kalman_error = models.FloatField(default=10.0)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['date_of_birth']
 
 
 class FlowLevel(models.TextChoices):
@@ -85,6 +85,7 @@ class Day(models.Model):
     fertile = models.BooleanField(default=False, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    prediction = models.BooleanField(default=False, blank=True)
 
     class Meta:
         constraints = [

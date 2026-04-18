@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
@@ -9,6 +9,15 @@ from django.utils import timezone
 from cycle.models import Phase, Symptom, Day, User
 
 # Create your views here.
+
+
+class DashboardRedirectView(generic.RedirectView):
+    permanent = True
+    url = reverse('dashboard')
+
+
+class DashboardView(generic.TemplateView):
+    template_name = 'dashboard.html'
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -161,8 +170,15 @@ class CalendarView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self) -> models.query.QuerySet:
         now = timezone.now()
-        month = int(self.request.GET.get('m', now.month))
-        year = int(self.request.GET.get('y', now.year))
+        try:
+            month = int(self.request.GET.get('m', now.month))
+            year = int(self.request.GET.get('y', now.year))
+        except (ValueError, TypeError):
+            month, year = now.month, now.year
+        if not 1 <= month <= 12:
+            month = now.month
+        if not 1 <= year <= 9999:
+            year = now.year
         return (
             super().get_queryset()
             .select_related('phase')
