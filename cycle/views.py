@@ -2,14 +2,13 @@ import calendar as cal_module
 
 from django.db import models
 from django.db.models import Q
-from django.forms import CheckboxSelectMultiple
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 
 from cycle.models import Phase, Symptom, Day, User, FlowLevel
+from cycle.forms import CustomUserCreationForm, DayLogForm
 
 
 class DashboardRedirectView(generic.RedirectView):
@@ -35,7 +34,7 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
         )
 
         cycle_day = (today - last_period.date).days + 1 if last_period else None
-        cycle_length = max(21, round(user.kalman_estimate))
+        cycle_length = max(21, round(user.kalman_estimate))  # pyright: ignore[reportAttributeAccessIssue]
 
         # Today's logged entry
         today_day = (
@@ -107,20 +106,9 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
             'next_fertile': next_fertile,
             'next_fertile_end': next_fertile_end,
             'recent_days': recent_days,
-            'kalman_estimate': round(user.kalman_estimate, 1),
+            'kalman_estimate': round(user.kalman_estimate, 1),  # pyright: ignore[reportAttributeAccessIssue]
         })
         return ctx
-
-
-class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = (
-            'email',
-            'date_of_birth',
-            'uses_hormonal_contraception',
-            'is_trying_to_conceive'
-        )
 
 
 class SymptomListView(generic.ListView):
@@ -194,18 +182,6 @@ class DayDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView)
 
     def test_func(self) -> bool:
         return self.request.user == self.get_object().user
-
-
-from django import forms
-
-class DayLogForm(forms.ModelForm):
-    class Meta:
-        model = Day
-        fields = ('date', 'flow_level', 'symptoms', 'spotting', 'notes')
-        widgets = {
-            'symptoms': CheckboxSelectMultiple(),
-            'date': forms.DateInput(attrs={'type': 'date'}),
-        }
 
 
 class DayCreateView(LoginRequiredMixin, generic.CreateView):
