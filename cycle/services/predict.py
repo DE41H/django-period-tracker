@@ -22,8 +22,8 @@ def update_kalman_estimate(user_id: int, observed_cycle_length: float) -> None:
     user.save(update_fields=['kalman_estimate', 'kalman_error'])
 
 
-def _average_period_length(user_id: int) -> int:
-    dates = get_period_dates(user_id)
+def _average_period_length(user_id: int, before_date: date) -> int:
+    dates = [(s, e) for s, e in get_period_dates(user_id) if s < before_date]
     lengths = [(end - start).days + 1 for start, end in dates]
     if lengths:
         return max(1, round(sum(lengths) / len(lengths)))
@@ -50,19 +50,9 @@ def _phase_for_scaled_day(phases: list[Phase], scaled_day: int) -> Phase | None:
 
 @atomic
 def generate_predictions(user_id: int, from_date: date) -> None:
-    """
-    Replace all existing predicted Day rows with freshly computed ones covering
-    period days and the fertile window for CYCLES_TO_PREDICT future cycles.
-
-    Each predicted Day is enriched with:
-      - flow_level   varying across the period (light → heavy → light)
-      - fertile      True during the 6-day fertile window around ovulation
-      - phase        matched by scaling cycle-day to a 28-day reference
-      - symptoms     all Symptoms associated with the assigned Phase
-    """
     user = User.objects.select_for_update().get(pk=user_id)
     cycle_length = max(21, round(user.kalman_estimate))
-    period_length = _average_period_length(user_id)
+    period_length = _average_period_length(user_id, before_date=from_date)
 
     phases = list(
         Phase.objects
