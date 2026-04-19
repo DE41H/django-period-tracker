@@ -13,22 +13,24 @@ def is_period_start(day_id: int) -> bool:
     return not Day.objects.filter(
         user=day.user,
         date=prev_date,
+        prediction=False,
     ).exclude(flow_level=FlowLevel.NONE).exists()
 
 
 def get_last_period_start(user_id: int, before_date: date) -> Day | None:
-    prev_day_with_flow = (
+    prev_actual_with_flow = (
         Day.objects
         .filter(
             user=OuterRef('user'),
-            date=OuterRef('date') - timedelta(days=1)
+            date=OuterRef('date') - timedelta(days=1),
+            prediction=False,
         ).exclude(flow_level=FlowLevel.NONE)
     )
     return (
         Day.objects
-        .filter(user_id=user_id, date__lt=before_date)
+        .filter(user_id=user_id, date__lt=before_date, prediction=False)
         .exclude(flow_level=FlowLevel.NONE)
-        .annotate(had_flow_yest=Exists(prev_day_with_flow))
+        .annotate(had_flow_yest=Exists(prev_actual_with_flow))
         .filter(had_flow_yest=False)
         .order_by('-date')
         .first()
@@ -36,31 +38,35 @@ def get_last_period_start(user_id: int, before_date: date) -> Day | None:
 
 
 def get_period_dates(user_id: int) -> tuple[tuple[date, date], ...]:
-    prev_day_with_flow = (
+    prev_actual_with_flow = (
         Day.objects
         .filter(
             user=OuterRef('user'),
-            date=OuterRef('date') - timedelta(days=1)
+            date=OuterRef('date') - timedelta(days=1),
+            prediction=False,
         ).exclude(flow_level=FlowLevel.NONE)
     )
-    next_day_with_flow = Day.objects.filter(
+    next_actual_with_flow = Day.objects.filter(
         user=OuterRef('user'),
         date=OuterRef('date') + timedelta(days=1),
+        prediction=False,
     ).exclude(flow_level=FlowLevel.NONE)
-    start_dates = list(
+
+    base_qs = (
         Day.objects
-        .filter(user_id=user_id)
+        .filter(user_id=user_id, prediction=False)
         .exclude(flow_level=FlowLevel.NONE)
-        .annotate(had_flow_yest=Exists(prev_day_with_flow))
+    )
+    start_dates = list(
+        base_qs
+        .annotate(had_flow_yest=Exists(prev_actual_with_flow))
         .filter(had_flow_yest=False)
         .order_by('-date')
         .values_list('date', flat=True)
     )
     end_dates = list(
-        Day.objects
-        .filter(user_id=user_id)
-        .exclude(flow_level=FlowLevel.NONE)
-        .annotate(has_flow_tom=Exists(next_day_with_flow))
+        base_qs
+        .annotate(has_flow_tom=Exists(next_actual_with_flow))
         .filter(has_flow_tom=False)
         .order_by('-date')
         .values_list('date', flat=True)

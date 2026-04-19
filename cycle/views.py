@@ -1,14 +1,16 @@
 import calendar as cal_module
+from datetime import datetime
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db import models
 from django.db.models import Q
-from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
+from django.views import generic
 
-from cycle.models import Phase, Symptom, Day, User, FlowLevel
 from cycle.forms import CustomUserCreationForm, DayLogForm
+from cycle.models import Day, FlowLevel, Phase, Symptom, User
+from cycle.services.day import get_last_period_start
 
 
 class DashboardRedirectView(generic.RedirectView):
@@ -21,22 +23,16 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        user = self.request.user
+        user: User = self.request.user  # pyright: ignore[reportAssignmentType]
         today = timezone.now().date()
 
-        # Last actual (non-predicted) period start
-        last_period = (
-            Day.objects
-            .filter(user=user, prediction=False)
-            .exclude(flow_level=FlowLevel.NONE)
-            .order_by('-date')
-            .first()
-        )
+        if user.pk is None:
+            return ctx
 
+        last_period = get_last_period_start(user.pk, today)
         cycle_day = (today - last_period.date).days + 1 if last_period else None
-        cycle_length = max(21, round(user.kalman_estimate))  # pyright: ignore[reportAttributeAccessIssue]
+        cycle_length = max(21, round(user.kalman_estimate))
 
-        # Today's logged entry
         today_day = (
             Day.objects
             .filter(user=user, date=today)
@@ -45,7 +41,6 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
             .first()
         )
 
-        # Next predicted period
         next_period = (
             Day.objects
             .filter(user=user, prediction=True, date__gt=today)
@@ -55,25 +50,20 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
         )
         days_until_period = (next_period.date - today).days if next_period else None
 
-        # Next fertile window start
         next_fertile = (
             Day.objects
             .filter(user=user, prediction=True, fertile=True, date__gte=today)
             .order_by('date')
             .first()
         )
-        # End of that fertile window
-        next_fertile_end = None
-        if next_fertile:
-            next_fertile_end = (
-                Day.objects
-                .filter(user=user, prediction=True, fertile=True,
-                        date__gte=next_fertile.date)
-                .order_by('-date')
-                .first()
-            )
+        next_fertile_end = (
+            Day.objects
+            .filter(user=user, prediction=True, fertile=True,
+                    date__gte=next_fertile.date)
+            .order_by('-date')
+            .first()
+        ) if next_fertile is not None else None
 
-        # Current phase from today's prediction if not logged
         predicted_today = (
             Day.objects
             .filter(user=user, date=today, prediction=True)
@@ -85,7 +75,6 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
             or (predicted_today.phase if predicted_today else None)
         )
 
-        # Recent logged days (non-prediction)
         recent_days = list(
             Day.objects
             .filter(user=user, prediction=False)
@@ -106,7 +95,7 @@ class DashboardView(LoginRequiredMixin, generic.TemplateView):
             'next_fertile': next_fertile,
             'next_fertile_end': next_fertile_end,
             'recent_days': recent_days,
-            'kalman_estimate': round(user.kalman_estimate, 1),  # pyright: ignore[reportAttributeAccessIssue]
+            'kalman_estimate': round(user.kalman_estimate, 1),
         })
         return ctx
 
@@ -195,7 +184,6 @@ class DayCreateView(LoginRequiredMixin, generic.CreateView):
         initial = super().get_initial()
         date_param = self.request.GET.get('date')
         if date_param:
-            from datetime import datetime
             try:
                 initial['date'] = datetime.strptime(date_param, '%Y-%m-%d').date()
             except ValueError:
