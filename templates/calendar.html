@@ -25,15 +25,15 @@
 
   /* ── Day-of-week header ── */
   .cal-head th{
-    padding:6px 0 10px;text-align:center;
+    padding:6px 0 4px;text-align:center;
     font-size:11px;font-weight:700;
     color:var(--text3);text-transform:uppercase;letter-spacing:.6px;
     width:14.28%}
   .cal-head th:first-child{color:rgba(255,69,58,.8)}
 
   /* ── Calendar grid ── */
-  .cal-grid{width:100%;border-collapse:separate;border-spacing:3px}
-  .cal-cell{text-align:center;vertical-align:top;padding:1px}
+  .cal-grid{width:100%;border-collapse:separate;border-spacing:3px 0}
+  .cal-cell{text-align:center;vertical-align:top;padding:2px 1px}
 
   /* ── Day cell ── */
   .cal-day{
@@ -146,7 +146,7 @@
     .legend{grid-template-columns:repeat(3,1fr)}
   }
   @media(min-width:768px){
-    .cal-grid{border-spacing:4px}
+    .cal-grid{border-spacing:4px 0}
     .cal-day-num{font-size:16px}
     .legend{grid-template-columns:repeat(5,1fr)}
     .cal-phase-strip{height:4px}
