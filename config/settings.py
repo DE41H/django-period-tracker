@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv('DJANGO_SECRET_KEY', 'django-insecure-cwfhxp)1)m1w%+_25_eve(ls4bsuu$9ajnj7(bz0!oinymh$!!')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv('DJANGO_DEBUG') == "True"
+DEBUG = getenv('DJANGO_DEBUG', 'True') == "True"
 
 ALLOWED_HOSTS = [ elem for elem in getenv('DJANGO_ALLOWED_HOSTS', '').split() if elem]
 
@@ -91,8 +91,9 @@ if DEBUG:
 else:
     DATABASES = {
         'default': dj_database_url.config(
-                default=getenv('DATABASE_URL'),
-                conn_max_age=600
+                default=getenv('DATABASE_URL', None),
+                conn_max_age=600,
+                ssl_require=True
             )
     }
 
